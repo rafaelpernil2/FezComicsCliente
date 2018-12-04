@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="line-height: 35px" float-left>Series</ion-title>
+    <ion-button size="small" float-right (click)="onClickAdd()">Añadir</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  </ion-searchbar> -->
+  <ion-list>
+    <ion-item *ngFor="let serie of series">
+      <ion-label>
+        <h2>{{serie.nombre}}</h2>
+        <h3>{{serie.genero}}</h3>
+        <p>{{serie.anotacionPrivada}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

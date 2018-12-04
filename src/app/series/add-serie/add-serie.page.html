@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Añadir serie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label color="primary" position="stacked">Nombre *</ion-label>
+      <ion-input placeholder="Nombre *" type="text" [(ngModel)]="serie.nombre" name="nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="stacked">Género *</ion-label>
+      <ion-input placeholder="Género *" type="text" [(ngModel)]="serie.genero" name="genero" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="stacked">Anotación privada</ion-label>
+      <ion-textarea placeholder="Anotación privada" [(ngModel)]="serie.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
+    </ion-item>
+    <ion-button padding type="submit" float-right>Añadir serie</ion-button>
+  </form>
+</ion-content>
