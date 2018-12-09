@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AddComicPage } from './add-comic.page';
+import { HttpModule } from '@angular/http';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpModule,
     RouterModule.forChild(routes)
   ],
   declarations: [AddComicPage]

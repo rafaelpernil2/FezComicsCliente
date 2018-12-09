@@ -3,12 +3,17 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Routes } from '@angular/router';
+import { SeriesPage } from './series/series.page';
+import { ComicPage } from './comics/comic/comic.page';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
+
 export class AppComponent {
+  
   public appPages = [
     {
       title: 'Series',

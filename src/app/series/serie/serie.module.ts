@@ -6,6 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SeriePage } from './serie.page';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { SerieProvider } from 'src/providers/SerieProvider';
 
 const routes: Routes = [
   {
@@ -19,8 +22,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SeriePage]
+  declarations: [SeriePage],
+  providers: [SerieProvider ],
 })
 export class SeriePageModule {}

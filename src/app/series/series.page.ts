@@ -10,6 +10,7 @@ import { SerieProvider } from 'src/providers/SerieProvider';
 export class SeriesPage implements OnInit {
 
   series : any[] = [];
+  allSeries : any[] = [];
 
   constructor(
     private router : Router,
@@ -18,12 +19,26 @@ export class SeriesPage implements OnInit {
 
   ngOnInit() {
     this.serieProvider.all().subscribe(series => {
+      this.allSeries = series;
       this.series = series;
     });
   }
 
-  onInput($event : any) {
-    this.series.filter(serie => serie.includes($event));
+  initializeItems(){
+    this.series = this.allSeries;
+  }
+
+  onInput(ev : any) {
+    this.initializeItems();
+
+    var val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.series = this.series.filter((serie) => {
+        return (serie.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    
   }
 
   onClickAdd() {

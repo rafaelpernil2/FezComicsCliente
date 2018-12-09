@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SerieProvider } from 'src/providers/SerieProvider';
 import { ToastController } from '@ionic/angular';
 
@@ -21,8 +21,10 @@ export class SeriePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => { 
-      this.id = params['id'];
+
+      
+      this.activatedRoute.paramMap.subscribe(params => { 
+      this.id= params["id"];
       this.serieProvider.get(this.id).subscribe(serie => this.serie = serie);
     });
   }
