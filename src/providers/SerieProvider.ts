@@ -1,25 +1,43 @@
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { map } from 'rxjs/operators';
+import { HttpMethodsInterface } from './HttpMethodsInterface';
  
 @Injectable()
-export class SerieProvider {
+export class SerieProvider implements HttpMethodsInterface {
  
-    constructor(
-        public http: HttpClient
-    ) {}
+    constructor(private http : Http){
+        // let headers = new Headers();
+        // let token = localStorage.getItem('Authorization')?JSON.parse(localStorage.getItem('Authorization')).token:null;
+        // headers.set('Authorization',token);
+    }
 
     all() : Observable<any> {
-        return this.http.get('https://someserver.com/api/series');
+        return this.http.get(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/`)
+        .pipe(map(response => { return response.json() }));
     }
- 
-    // add(seriename, password){
-    //     let headers = new Headers();
-    //     headers.append('Content-Type', 'application/json');
-    //     let credentials = {
-    //         user: seriename,
-    //         password: password
-    //     };
-    //     return this.http.post('https://someserver.com/api/series', , JSON.stringify(credentials), {headers: headers});
-    // }
+
+    get(id: number): Observable<any> {
+        return this.http.get(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/${id}`)
+        .pipe(map(response => { return response.json() }));
+    }
+
+    put(id: number, serie: any): Observable<any> {
+        return this.http.put(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/${id}`, serie)
+        .pipe(map(response => { return response.json() }));
+    }
+    post(serie: any): Observable<any> {
+        return this.http.post(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/`, serie)
+        .pipe(map(response => { return response.json() }));
+    }
+    delete(id: number): Observable<any> {
+        return this.http.delete(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/${id}`)
+        .pipe(map(response => { return response.json() }));
+    }
+
+    count(): Observable<any> {
+        return this.http.get(`http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/count`)
+        .pipe(map(response => { return response.json() }));
+    }
 }

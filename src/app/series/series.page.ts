@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SerieProvider } from 'src/providers/SerieProvider';
 
 @Component({
   selector: 'app-series',
@@ -8,32 +9,28 @@ import { Router } from '@angular/router';
 })
 export class SeriesPage implements OnInit {
 
-  series : any[] = [
-    {
-      nombre : "Superman",
-      anotacionPrivada : "La kriptonita le flipa",
-      genero : "Acción"
-    },
-    {
-      nombre : "Batman",
-      anotacionPrivada : "Los coches le flipan",
-      genero : "Drama"
-    },
-    {
-      nombre : "Aquaman",
-      anotacionPrivada : "Los caballitos de mar le flipan",
-      genero : "Momoa"
-    }
-  ];
+  series : any[] = [];
 
   constructor(
-    private router : Router
+    private router : Router,
+    private serieProvider : SerieProvider
   ) { }
 
   ngOnInit() {
+    this.serieProvider.all().subscribe(series => {
+      this.series = series;
+    });
+  }
+
+  onInput($event : any) {
+    this.series.filter(serie => serie.includes($event));
   }
 
   onClickAdd() {
-    this.router.navigate(['/series/add'])
+    this.router.navigate(['/series/add']);
+  }
+
+  onClickSerie(id : number) {
+    this.router.navigate([`/series/${id}`])
   }
 }

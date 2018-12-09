@@ -9,12 +9,10 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel"
-    (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-  </ion-searchbar> -->
+  <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let serie of series">
-      <ion-label>
+    <ion-item tappable *ngFor="let serie of series">
+      <ion-label (click)="onClickSerie(serie.id)">
         <h2>{{serie.nombre}}</h2>
         <h3>{{serie.genero}}</h3>
         <p>{{serie.anotacionPrivada}}</p>
