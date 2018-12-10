@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SerieProvider } from 'src/providers/SerieProvider';
 import { ToastController } from '@ionic/angular';
+import { Serie } from 'src/models/Serie';
 
 @Component({
   selector: 'app-add-serie',
@@ -10,31 +11,32 @@ import { ToastController } from '@ionic/angular';
 })
 export class AddSeriePage implements OnInit {
 
-  serie : any = {}
+  serie : Serie;
 
   constructor(
     private router : Router,
     private serieProvider : SerieProvider,
-    private toast : ToastController
-  ) { }
-
-  ngOnInit() {
+    private toastCtrl : ToastController
+  ) {
+    this.serie = new Serie();
   }
+
+  ngOnInit() {}
 
   onSubmit() {
     this.serieProvider.post(this.serie).subscribe(serie => {
-      this.toast.create({
+      this.toastCtrl.create({
         message: "Se ha creado la serie correctamente",
         duration: 3000,
         position: 'top'
-      });
+      }).then(toast => toast.present());
       this.router.navigate(['/series']);
     }, error => {
-      this.toast.create({
+      this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
         position: 'top'
-      });
+      }).then(toast => toast.present());
     });
   }
 }

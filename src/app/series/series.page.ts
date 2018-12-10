@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SerieProvider } from 'src/providers/SerieProvider';
+import { Serie } from 'src/models/Serie';
 
 @Component({
   selector: 'app-series',
@@ -9,8 +10,8 @@ import { SerieProvider } from 'src/providers/SerieProvider';
 })
 export class SeriesPage implements OnInit {
 
-  series : any[] = [];
-  allSeries : any[] = [];
+  series : Serie[] = [];
+  allSeries : Serie[] = [];
 
   constructor(
     private router : Router,
@@ -28,24 +29,24 @@ export class SeriesPage implements OnInit {
     this.series = this.allSeries;
   }
 
-  onInput(ev : any) {
+  onInput($event : any) {
     this.initializeItems();
 
-    var val = ev.target.value;
+    var val = $event.target.value;
 
     if (val && val.trim() != '') {
-      this.series = this.series.filter((serie) => {
-        return (serie.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
+      this.series = this.series.filter(serie => {
+        return (serie.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1)
+                || (serie.genero.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
     }
-    
   }
 
   onClickAdd() {
     this.router.navigate(['/series/add']);
   }
 
-  onClickSerie(id : number) {
-    this.router.navigate([`/series/${id}`])
+  onClickSerie(serie : Serie) {
+    this.router.navigate([`/series/${serie.id}`])
   }
 }
