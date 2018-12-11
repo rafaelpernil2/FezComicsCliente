@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddComicPage } from './add-comic.page';
 import { HttpModule } from '@angular/http';
+import { ComicProvider } from 'src/providers/ComicProvider';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AddComicPage]
+  declarations: [AddComicPage],
+  providers: [ComicProvider]
 })
 export class AddComicPageModule {}

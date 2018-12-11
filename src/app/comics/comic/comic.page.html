@@ -1,9 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>comic</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Modificar comic</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content padding>
-
-</ion-content>
+  <ion-content padding>
+      <form *ngIf="comic" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label color="primary" position="stacked">Nombre *</ion-label>
+          <ion-input placeholder="Nombre" type="text" [(ngModel)]="comic.nombre" name="nombre" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" position="stacked">isbn *</ion-label>
+          <ion-input placeholder="ISBN" type="text" [(ngModel)]="comic.isbn" name="isbn" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" position="stacked">Anotación privada</ion-label>
+          <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
+        </ion-item>
+        <ion-item>
+           
+            <img [src]="getImgContent(comic)" alt="Ionic File" width="300" />
+          </ion-item>
+        <ion-button padding type="submit" float-left>Guardar</ion-button>
+    </form>
+    <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
+  </ion-content>

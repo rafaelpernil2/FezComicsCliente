@@ -1,19 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Comics</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title style="line-height: 35px" float-left>Comic</ion-title>
+      <ion-button size="small" float-right (click)="onClickAdd()">Añadir</ion-button>
+    </ion-toolbar>
+  </ion-header>
+  
 
 <ion-content padding>
+    <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let comic of comics">
+    <ion-item tappable *ngFor="let comic of comics">
       <ion-avatar item-start>
-        <img src="{{comic.foto}}">
+        <img [src]="getImgContent(comic)">
       </ion-avatar>
-      <ion-label style="margin-left: 10px">
+      <ion-label (click)="onClickComic(comic)" style="margin-left: 10px">
         <h2>{{comic.nombre}}</h2>
         <p>{{comic.anotacionPrivada}}</p>
       </ion-label>
