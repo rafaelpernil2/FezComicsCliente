@@ -22,10 +22,21 @@
           <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
         </ion-item>
         <ion-item>
-            <ion-label color="primary" position="stacked">Subir imagen</ion-label>
-            <button type="file" ion-button (click)="uploadFile()">Subir imagen</button>
-          </ion-item>
+          <ion-label color="primary" position="stacked">Subir imagen</ion-label>
+          <input type="file" change="encodeImageFileAsURL(this)">
+        </ion-item>
+          <ion-item>
+     
+              <ion-label color="primary" position="stacked">Series</ion-label>
+              <ion-select value="serie"  >
+               
+                    <ion-select-option   *ngFor="let serie of series"  [value]="serie">{{serie.nombre}}</ion-select-option>
+                   
+                </ion-select>
+         
+        </ion-item>
       <ion-button padding type="submit" float-right>Añadir comic</ion-button>
   </form>
-
+  
+  
 </ion-content>
