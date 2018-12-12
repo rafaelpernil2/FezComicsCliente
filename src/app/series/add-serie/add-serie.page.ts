@@ -21,7 +21,10 @@ export class AddSeriePage implements OnInit {
     this.serie = new Serie();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+
+  }
 
   onSubmit() {
     this.serieProvider.post(this.serie).subscribe(serie => {
