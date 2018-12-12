@@ -25,8 +25,8 @@ export class ComicsPage implements OnInit {
   
   getFoto(comic : Comic){
    return "data:image/jpeg;base64, " +comic.foto;
-   console.log(comic.foto);
   }
+
   getImgContent(comic : Comic): SafeUrl {
     var result;
    
@@ -35,7 +35,6 @@ export class ComicsPage implements OnInit {
     }
     else {
      result = "data:image/jpeg;base64, " +comic.foto;
-    
     }
     return this.sanitizer.bypassSecurityTrustUrl(result);
   }
