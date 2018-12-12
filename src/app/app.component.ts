@@ -41,4 +41,16 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+  onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/tokensignin');
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.onload = function() {
+  console.log('Signed in as: ' + xhr.responseText);
+};
+xhr.send('idtoken=' + id_token);
+  }
+
 }
