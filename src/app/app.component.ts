@@ -53,7 +53,7 @@ xhr.onload = function() {
 xhr.send('idtoken=' + id_token);
 //Mio
 
-
+console.log("LLega aquí");
   }
 
 }

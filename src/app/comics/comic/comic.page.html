@@ -1,31 +1,41 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Modificar comic</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Modificar comic</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-content padding>
-      <form *ngIf="comic" (ngSubmit)="onSubmit()">
-        <ion-item>
-          <ion-label color="primary" position="stacked">Nombre *</ion-label>
-          <ion-input placeholder="Nombre" type="text" [(ngModel)]="comic.nombre" name="nombre" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" position="stacked">isbn *</ion-label>
-          <ion-input placeholder="ISBN" type="text" [(ngModel)]="comic.isbn" name="isbn" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label color="primary" position="stacked">Anotación privada</ion-label>
-          <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
-        </ion-item>
-        <ion-item>
-           
-            <img [src]="getImgContent(comic)" alt="Ionic File" width="300" />
+<ion-content *ngIf="comic" padding>
+  <ion-grid>
+    <ion-row>
+      
+      <ion-col>
+        <form (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label color="primary" position="stacked">Nombre *</ion-label>
+            <ion-input placeholder="Nombre" type="text" [(ngModel)]="comic.nombre" name="nombre" required></ion-input>
           </ion-item>
-        <ion-button padding type="submit" float-left>Guardar</ion-button>
-    </form>
-    <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
-  </ion-content>
+          <ion-item>
+            <ion-label color="primary" position="stacked">isbn *</ion-label>
+            <ion-input placeholder="ISBN" type="text" [(ngModel)]="comic.isbn" name="isbn" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" position="stacked">Anotación privada</ion-label>
+            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
+          </ion-item>
+          <ion-item>
+          <ion-col size="3">
+              <ion-label color="primary" position="stacked">Foto</ion-label>
+            <img class="image" [src]="pic"/>
+            <input type="file" ng2FileSelect [uploader]="uploader" />
+          </ion-col>
+         </ion-item>
+          <ion-button padding type="submit" float-left>Guardar</ion-button>
+        </form>
+        <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
