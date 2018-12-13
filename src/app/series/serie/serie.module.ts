@@ -9,6 +9,7 @@ import { SeriePage } from './serie.page';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { SerieProvider } from 'src/providers/SerieProvider';
+import { ComicHasSerieProvider } from 'src/providers/ComicHasSerieProvider';
 
 const routes: Routes = [
   {
@@ -27,6 +28,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [SeriePage],
-  providers: [SerieProvider ],
+  providers: [SerieProvider, ComicHasSerieProvider ],
 })
 export class SeriePageModule {}
