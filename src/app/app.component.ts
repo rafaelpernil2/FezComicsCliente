@@ -51,6 +51,9 @@ xhr.onload = function() {
   console.log('Signed in as: ' + xhr.responseText);
 };
 xhr.send('idtoken=' + id_token);
+//Mio
+
+
   }
 
 }
