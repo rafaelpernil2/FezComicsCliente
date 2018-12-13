@@ -11,17 +11,35 @@
     <form *ngIf="serie" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label color="primary" position="stacked">Nombre *</ion-label>
-        <ion-input placeholder="Nombre *" type="text" [(ngModel)]="serie.nombre" name="nombre" required></ion-input>
+        <ion-input placeholder="Nombre" type="text" [(ngModel)]="serie.nombre" name="nombre" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Género *</ion-label>
-        <ion-input placeholder="Género *" type="text" [(ngModel)]="serie.genero" name="genero" required></ion-input>
+        <ion-input placeholder="Género" type="text" [(ngModel)]="serie.genero" name="genero" required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Anotación privada</ion-label>
         <ion-textarea placeholder="Anotación privada" [(ngModel)]="serie.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
       </ion-item>
-      <ion-button padding type="submit" float-left>Modificar serie</ion-button>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Comics</ion-label>
+       
+     
+      <ion-list>
+        <ion-item tappable *ngFor="let comic of comics">
+          <ion-avatar item-start>
+            <img [src]="getImgContent(comic)">
+          </ion-avatar>
+          <ion-label (click)="onClickComic(comic)" style="margin-left: 10px">
+            <h2>{{comic.nombre}}</h2>
+            <p>{{comic.anotacionPrivada}}</p>
+          </ion-label>
+        </ion-item>
+        
+      </ion-list>
+    </ion-item>
+      <ion-button padding type="submit" float-left>Guardar</ion-button>
   </form>
-  <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar serie</ion-button>
+  <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
+  
 </ion-content>

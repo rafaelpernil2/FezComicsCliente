@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ComicPage } from './comic.page';
 import { HttpModule } from '@angular/http';
+import { ComicProvider } from 'src/providers/ComicProvider';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     HttpModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ComicPage]
+  declarations: [ComicPage],
+  providers: [ComicProvider]
 })
 export class ComicPageModule {}

@@ -23,8 +23,8 @@ const routes: Routes = [
     path: 'comics',
     loadChildren: './comics/comics.module#ComicsPageModule'
   },
-  { path: 'add-comic', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' },
-  { path: 'comic', loadChildren: './comics/comic/comic.module#ComicPageModule' },
+  { path: 'comics/add', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' },
+  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' },
 
 ];
 
