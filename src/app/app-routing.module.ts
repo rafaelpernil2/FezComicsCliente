@@ -24,8 +24,7 @@ const routes: Routes = [
     loadChildren: './comics/comics.module#ComicsPageModule'
   },
   { path: 'comics/add', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' },
-  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' },
-
+  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' }
 ];
 
 @NgModule({
