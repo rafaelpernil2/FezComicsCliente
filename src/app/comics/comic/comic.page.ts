@@ -87,7 +87,7 @@ export class ComicPage implements OnInit {
     };
     
     this.uploader.onCompleteItem = (item, response)=> {
-      blobToBase64String(item._file.slice()).then(function (result) {
+      blobToBase64String(item._file).then(function (result) {
         var newComic : Comic;
         newComic = this.comic;
         newComic.foto = result;

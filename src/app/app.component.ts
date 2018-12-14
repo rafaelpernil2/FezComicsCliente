@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Routes } from '@angular/router';
 import { SeriesPage } from './series/series.page';
 import { ComicPage } from './comics/comic/comic.page';
+import { UserProvider } from 'providers/UserProvider';
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,8 @@ export class AppComponent {
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private userProvider : UserProvider,
   ) {
     this.initializeApp();
   }
@@ -38,22 +39,10 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      
     });
   }
-
-  onSignIn(googleUser) {
-    var id_token = googleUser.getAuthResponse().id_token;
-    var xhr = new XMLHttpRequest();
-xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/tokensignin');
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.onload = function() {
-  console.log('Signed in as: ' + xhr.responseText);
-};
-xhr.send('idtoken=' + id_token);
-//Mio
-
-console.log("LLega aquí");
-  }
+  
+  
 
 }
