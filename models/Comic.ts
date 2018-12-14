@@ -10,7 +10,7 @@ export class Comic {
         nombre? : string,
         isbn? : string,
         anotacionPrivada? : string,
-        foto? :string
+        foto? : string
     ) {
         this.id = id || null;
         this.nombre = nombre || '';

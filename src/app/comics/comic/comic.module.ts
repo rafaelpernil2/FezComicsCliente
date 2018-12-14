@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { ComicPage } from './comic.page';
 import { HttpModule } from '@angular/http';
 import { ComicProvider } from 'src/providers/ComicProvider';
-
+import { FileUploader, FileItem, FileUploadModule } from 'ng2-file-upload';
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +22,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     HttpModule,
+    FileUploadModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ComicPage],
