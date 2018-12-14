@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Routes } from '@angular/router';
 import { SeriesPage } from './series/series.page';
 import { ComicPage } from './comics/comic/comic.page';
-import { UserProvider } from 'providers/UserProvider';
+import { UserProvider } from 'src/providers/UserProvider';
 
 @Component({
   selector: 'app-root',

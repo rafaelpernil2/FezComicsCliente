@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserProvider } from 'providers/UserProvider';
+import { UserProvider } from 'src/providers/UserProvider';
 import { HttpModule } from '@angular/http';
 
 const routes: Routes = [
