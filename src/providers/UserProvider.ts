@@ -32,6 +32,21 @@ export class UserProvider implements HttpMethodsInterface {
         return this.http.get(this.basicUrl + id).pipe(map(response => { return response.json() }));
     }
 
+    getUserByToken(token: string): Observable<User>{
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.get(this.basicUrl + token).pipe(map(response => { return response.json() }));
+    }
+
+    getRol(id: string): Observable<User>{
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.get(this.basicUrl + id).pipe(map(response => { return response.json() }));
+    }
+
+    findById(id: string, user: User): Observable<User> {
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.put(this.basicUrl + id, user).pipe(map(response => { return response.json() }));
+    }
+
     put(id: number, user: User): Observable<User> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.put(this.basicUrl + id, user).pipe(map(response => { return response.json() }));

@@ -16,11 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
 
  
 import { IonicStorageModule } from '@ionic/storage';
+import { UserProvider } from 'src/providers/UserProvider';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -30,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    UserProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     
   ],

@@ -1,29 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Fez Comic - Ionic App</title>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Fez Comic - Ionic App</title>
+
+
+  <base href="/" />
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+  <script type="text/javascript">
+    function onSignIn(googleUser) {
+      console.log("Succesfully Singed in!!!");
+      console.log("LLega aquí");
+
+     
+     
+
+
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log(id_token);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+     
+      
+
     
+      //xhr.setRequestHeader('content-type','application/json');
+     
+      xhr.onload = function () {
+        console.log('Signed in as: ' + xhr.responseText);
+      };
 
-    <base href="/" />
+      xhr.send('idtoken=' + id_token);
+      //Mio
+      
 
-    <meta
-      name="viewport"
-      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
 
-    <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com">
 
-   
-    <!-- add to homescreen for ios -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
+
+    }
+  </script>
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
 </html>
