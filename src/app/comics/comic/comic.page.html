@@ -10,7 +10,11 @@
 <ion-content *ngIf="comic" padding>
   <ion-grid>
     <ion-row>
-      
+      <ion-col size="3">
+        <img class="image" [src]="pic"/>
+        <input name="file" id="file" type="file" ng2FileSelect [uploader]="uploader" style="display: none"/>
+        <label for="file"><ion-button expand="full" size="small" fill="outline">Subir imagen...</ion-button></label>
+      </ion-col>
       <ion-col>
         <form (ngSubmit)="onSubmit()">
           <ion-item>
@@ -25,13 +29,6 @@
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
             <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
           </ion-item>
-          <ion-item>
-          <ion-col size="3">
-              <ion-label color="primary" position="stacked">Foto</ion-label>
-            <img class="image" [src]="pic"/>
-            <input type="file" ng2FileSelect [uploader]="uploader" />
-          </ion-col>
-         </ion-item>
           <ion-button padding type="submit" float-left>Guardar</ion-button>
         </form>
         <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
