@@ -5,8 +5,7 @@ import { HttpModule } from '@angular/http';
 import { UserGuard } from 'src/guards/UserGuard';
 import { AdministratorGuard } from 'src/guards/AdministratorGuard';
 
-import { HttpModule } from '@angular/http';
-import { UserProvider } from 'src/providers/UserProvider';
+
 
 const routes: Routes = [
   {
