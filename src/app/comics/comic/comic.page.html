@@ -29,6 +29,15 @@
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
             <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
           </ion-item>
+          <ion-label color="primary" position="stacked">Series</ion-label>
+          <ion-list>
+              <ion-item tappable *ngFor="let serie of series">
+                <ion-label (click)="onClickSerie(serie)" style="margin-left: 10px">
+                  <h2>{{serie.nombre}}</h2>
+                  <p>{{serie.anotacionPrivada}}</p>
+                </ion-label>
+              </ion-item>
+          </ion-list>
           <ion-button padding type="submit" float-left>Guardar</ion-button>
         </form>
         <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>

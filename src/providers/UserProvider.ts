@@ -34,7 +34,7 @@ export class UserProvider implements HttpMethodsInterface {
 
     getUserByToken(token: string): Observable<User>{
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + token).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl +'userbytoken/' + token).pipe(map(response => { return response.json() }));
     }
 
     getRol(id: string): Observable<User>{

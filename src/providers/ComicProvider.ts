@@ -31,9 +31,13 @@ export class ComicProvider implements HttpMethodsInterface {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.get(this.basicUrl + id).pipe(map(response => { return response.json() }));
     }
+    getByNombre(nombre: string): Observable<Comic> {
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.get(this.basicUrl + 'nombre/' + nombre).pipe(map(response => { return response.json() }));
+    }
 
     put(id: number, comic: Comic): Observable<Comic> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: false});
         return this.http.put(this.basicUrl + id, comic).pipe(map(response => { return response.json() }));
     }
     post(comic: Comic): Observable<Comic> {

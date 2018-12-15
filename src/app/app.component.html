@@ -3,7 +3,16 @@
     <ion-menu>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Fez comic</ion-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" style="display: flex">
+                <ion-title>Fez comic</ion-title>
+              </ion-col>
+              <ion-col size="6">
+                <div style="float: right" class="g-signin2" data-onsuccess="onSignIn"></div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -17,9 +26,21 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <h5>Accede con tu cuenta de Google</h5>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
       </ion-content>      
+      <ion-footer>
+        <ion-toolbar>
+          <div *ngIf="!qod">
+            <div>Inspiring Quote of the day</div>
+            <span style="font-style: italic; font-size: 14px;">"Los españoles muy españoles y mucho españoles"</span>
+            <span style="font-size: 14px;"> - Un presidente aleatorio</span>
+          </div>
+          <div *ngIf="qod">
+            <div>{{qod.title}}</div>
+            <span style="font-style: italic; font-size: 14px;">{{qod.quote}} </span>
+            <span style="font-size: 14px;"> - {{qod.author}}</span>
+          </div>
+        </ion-toolbar>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>

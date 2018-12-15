@@ -30,9 +30,10 @@ export class SeriePage implements OnInit {
   ngOnInit() {
     let id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     if(!isNaN(id)) this.serieProvider.get(id).subscribe(serie => this.serie = serie);
-    this.comicHasSerieProvider.findById(id).subscribe(comics => {
+    this.comicHasSerieProvider.getComicsBySerie(id).subscribe(comics => {
       this.comics = comics;
     })
+   
   }
 
   onSubmit() {

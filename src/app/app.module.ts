@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { UserProvider } from 'src/providers/UserProvider';
 import { HttpModule } from '@angular/http';
+import { AdministratorGuard } from 'src/guards/AdministratorGuard';
+import { UserGuard } from 'src/guards/UserGuard';
+import { QuoteProvider } from 'src/providers/QuoteProvider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,9 +36,9 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
-    UserProvider,
+    QuoteProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
+   
   ],
   bootstrap: [AppComponent]
   
