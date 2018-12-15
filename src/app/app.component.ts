@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
+import { Routes } from '@angular/router';
+import { SeriesPage } from './series/series.page';
+import { ComicPage } from './comics/comic/comic.page';
+import { UserProvider } from 'src/providers/UserProvider';
+
 
 @Component({
   selector: 'app-root',
