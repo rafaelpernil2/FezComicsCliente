@@ -42,4 +42,8 @@ export class AppComponent {
       });
     });
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 42c19cf7f69e9f5cae473b6fcb4a19e4644e7bec
