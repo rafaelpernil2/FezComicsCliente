@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Routes } from '@angular/router';
-import { SeriesPage } from './series/series.page';
-import { ComicPage } from './comics/comic/comic.page';
-import { UserProvider } from 'src/providers/UserProvider';
+import { QuoteProvider } from 'src/providers/QuoteProvider';
 
 @Component({
   selector: 'app-root',
@@ -28,21 +23,23 @@ export class AppComponent {
     }
   ];
 
+  public qod : any;
+
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
-    private userProvider : UserProvider,
+    private quoteProvider : QuoteProvider
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      
+    this.quoteProvider.getQOD().subscribe(qod => {
+      this.qod = qod.contents.quotes[0];
+
+      this.platform.ready().then(() => {
+        this.statusBar.styleDefault();      
+      });
     });
   }
-  
-  
-
 }
