@@ -12,7 +12,7 @@ import { UserProvider } from 'src/providers/UserProvider';
 })
 
 export class AppComponent {
-  
+
   public appPages = [
     {
       title: 'Series',
@@ -48,7 +48,7 @@ export class AppComponent {
     });
     this.nombre = sessionStorage.getItem("nombre");
   }
-
  
 }
+
 

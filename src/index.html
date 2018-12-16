@@ -55,22 +55,32 @@ function initClient() {
       
       var id_token = googleUser.getAuthResponse().id_token;
       var xhr = new XMLHttpRequest();
+<<<<<<< HEAD
 
 
       var csrftoken = getCookie('csrftoken');
 
       
       xhr.open('POST', 'https://back-api-dot-infra-triumph-229219.appspot.com/auth');
+=======
+      xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
+>>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       //xhr.setRequestHeader('X-CSRFToken', csrftoken);
       xhr.send('idtoken=' + id_token);
       if (typeof (Storage) !== "undefined") {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("nombre");
         sessionStorage.setItem("token", id_token);
+<<<<<<< HEAD
         sessionStorage.setItem("nombre","Bienvenido, " + googleUser.getBasicProfile().getName());
 
 
+=======
+        sessionStorage.setItem("nombre", "Bienvenido, " + googleUser.getBasicProfile().getName());
+>>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
       }
+      
     }
   </script>
   <script>

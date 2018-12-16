@@ -8,7 +8,11 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
+<<<<<<< HEAD
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/users/';
+=======
+    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.user/';
+>>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
 
     constructor(private http: Http) {}
 
