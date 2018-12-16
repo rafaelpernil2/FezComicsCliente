@@ -12,12 +12,12 @@ const routes: Routes = [
     path: '',
     redirectTo: 'series',
     pathMatch: 'full',
-    canActivate: [AdministratorGuard, UserGuard] 
+    canActivate: [UserGuard] 
   },
   { 
     path: 'series',
     loadChildren: './series/series.module#SeriesPageModule',
-    canActivate: [AdministratorGuard, UserGuard] 
+    canActivate: [UserGuard] 
   },
   {
     path: 'series/add', 
@@ -29,16 +29,18 @@ const routes: Routes = [
     path: 'series/:id', 
     loadChildren: './series/serie/serie.module#SeriePageModule' 
     ,
-    canActivate: [AdministratorGuard,UserGuard]
+    canActivate: [AdministratorGuard]
   },
   {
     path: 'comics',
     loadChildren: './comics/comics.module#ComicsPageModule'
     ,
-    canActivate: [ AdministratorGuard]
+    canActivate: [ UserGuard]
   },
-  { path: 'comics/add', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' },
-  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' }
+  { path: 'comics/add', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' ,
+  canActivate: [ AdministratorGuard]},
+  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' ,
+  canActivate: [ AdministratorGuard]}
 ];
 
 @NgModule({

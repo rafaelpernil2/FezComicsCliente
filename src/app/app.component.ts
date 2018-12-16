@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
 import { Routes } from '@angular/router';
@@ -33,7 +33,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
-    private quoteProvider : QuoteProvider
+    private quoteProvider : QuoteProvider,
+    private menuCtrl : MenuController,
   ) {
     this.initializeApp();
   }
@@ -43,7 +44,8 @@ export class AppComponent {
       this.qod = qod.contents.quotes[0];
 
       this.platform.ready().then(() => {
-        this.statusBar.styleDefault();      
+        this.statusBar.styleDefault();
+        this.menuCtrl.open();      
       });
     });
   }

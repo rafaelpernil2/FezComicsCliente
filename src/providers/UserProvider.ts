@@ -15,7 +15,7 @@ export class UserProvider implements HttpMethodsInterface {
     private obtainHeaders() {
         var headers = new Headers();
         headers.append('Access-Control-Allow-Origin' , '*');
-        headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+        headers.append('Access-Control-Allow-Methods', 'POST, GET, DELETE, PUT');
         headers.append('Accept','application/json');
         headers.append('content-type','application/json');
 

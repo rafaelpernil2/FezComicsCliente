@@ -31,7 +31,7 @@ export class AddComicPage implements OnInit {
   pic: any;
   inputFile: any;
   idSerie: number;
-
+  anotacionPublica : string;
 
 
 
@@ -117,7 +117,7 @@ export class AddComicPage implements OnInit {
       this.comicProvider.getByNombre(this.comic.nombre).subscribe(comic => {
         
         this.comic = comic;
-        this.comicHasSerie = new ComicHasSerie(this.serie, this.comic, "",new ComicHasSeriePK(this.comic.id,this.serie.id));
+        this.comicHasSerie = new ComicHasSerie(this.serie, this.comic, this.anotacionPublica,new ComicHasSeriePK(this.comic.id,this.serie.id));
 
         
         this.comicHasSerieProvider.post(this.comicHasSerie).subscribe(

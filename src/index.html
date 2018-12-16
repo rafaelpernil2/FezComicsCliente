@@ -17,35 +17,26 @@
   <meta name="google-signin-client_id" content="20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
   <script type="text/javascript">
-    function onSignIn(googleUser) {
-      console.log("Succesfully Singed in!!!");
-      console.log("LLega aquí");
+    function onSignIn(googleUser) { 
       var id_token = googleUser.getAuthResponse().id_token;
-
-
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      
-
-
-
-      //xhr.setRequestHeader('content-type','application/json');
-
-      xhr.onload = function () {
-        console.log('Signed in as: ' + xhr.responseText);
-      };
       xhr.send('idtoken=' + id_token);
-   
       if (typeof (Storage) !== "undefined") {
         sessionStorage.removeItem("token");
         sessionStorage.setItem("token", id_token);
-
       }
-     
-
-      
-
+    }
+  </script>
+  <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut();
+      auth2.disconnect();
+      if (typeof (Storage) !== "undefined") {
+        sessionStorage.removeItem("token");
+      }
     }
   </script>
   <!-- add to homescreen for ios -->
