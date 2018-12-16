@@ -8,7 +8,7 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.user/';
+    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.user/';
 
     constructor(private http: Http) {}
 

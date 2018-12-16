@@ -8,7 +8,7 @@ import { Comic } from 'src/models/Comic';
 @Injectable()
 export class ComicProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.comic/';
+    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.comic/';
 
     constructor(private http: Http) {}
 

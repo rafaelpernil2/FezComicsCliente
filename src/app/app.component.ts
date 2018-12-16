@@ -14,7 +14,7 @@ import { UserProvider } from 'src/providers/UserProvider';
 })
 
 export class AppComponent {
-  
+
   public appPages = [
     {
       title: 'Series',
@@ -28,13 +28,13 @@ export class AppComponent {
     }
   ];
 
-  public qod : any;
-  private nombre : string;
+  public qod: any;
+  private nombre: string;
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
-    private quoteProvider : QuoteProvider,
-    private menuCtrl : MenuController,
+    private quoteProvider: QuoteProvider,
+    private menuCtrl: MenuController,
   ) {
     this.initializeApp();
   }
@@ -45,10 +45,13 @@ export class AppComponent {
 
       this.platform.ready().then(() => {
         this.statusBar.styleDefault();
-        this.menuCtrl.open();      
+        this.nombre = sessionStorage.getItem("nombre");
+        this.menuCtrl.open();
       });
     });
-    this.nombre = sessionStorage.getItem("nombre");
+   
   }
+ 
 }
+
 

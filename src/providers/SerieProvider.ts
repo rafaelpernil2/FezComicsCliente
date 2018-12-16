@@ -8,7 +8,7 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class SerieProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.serie/';
+    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.serie/';
 
     constructor(private http: Http) {}
 
