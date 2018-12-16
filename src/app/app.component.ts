@@ -29,7 +29,7 @@ export class AppComponent {
   ];
 
   public qod : any;
-
+  private nombre : string;
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
@@ -48,6 +48,7 @@ export class AppComponent {
         this.menuCtrl.open();      
       });
     });
+    this.nombre = sessionStorage.getItem("nombre");
   }
 }
 

@@ -8,7 +8,7 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.user/';
+    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.user/';
 
     constructor(private http: Http) {}
 
@@ -17,7 +17,7 @@ export class UserProvider implements HttpMethodsInterface {
         headers.append('Access-Control-Allow-Origin' , '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, DELETE, PUT');
         headers.append('Accept','application/json');
-        headers.append('content-type','application/json');
+        headers.append('content-type','application/json;charset=utf-8');
 
         return headers;
     }

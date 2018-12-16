@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+    <meta charset="UTF-8">
+
   <title>Fez Comic - Ionic App</title>
 
 
@@ -20,12 +21,13 @@
     function onSignIn(googleUser) { 
       var id_token = googleUser.getAuthResponse().id_token;
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
+      xhr.open('POST', 'http://localhost:8080/B3servidorREST/webresources/auth/tokensignin');
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.send('idtoken=' + id_token);
       if (typeof (Storage) !== "undefined") {
         sessionStorage.removeItem("token");
         sessionStorage.setItem("token", id_token);
+        sessionStorage.setItem("nombre",googleUser.getBasicProfile().getName());
       }
     }
   </script>

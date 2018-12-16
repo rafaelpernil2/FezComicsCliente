@@ -8,7 +8,7 @@ import { Rol } from 'src/models/Rol';
 @Injectable()
 export class RolProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.rol/';
+    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.rol/';
 
     constructor(private http: Http) {}
 
@@ -17,7 +17,7 @@ export class RolProvider implements HttpMethodsInterface {
         headers.append('Access-Control-Allow-Origin' , '*');
         headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         headers.append('Accept','application/json');
-        headers.append('content-type','application/json');
+        headers.append('content-type','application/json;charset=utf-8');
 
         return headers;
     }
