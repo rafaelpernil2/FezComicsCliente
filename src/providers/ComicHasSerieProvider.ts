@@ -36,27 +36,27 @@ export class ComicHasSerieProvider {
         return this.http.get(this.basicUrl + 'serie/' + id).pipe(map(response => { return response.json() }));
     }
 
-    get(idComic: number, idSerie : number): Observable<ComicHasSerie> {
+    get(comicId: number, serieId : number): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + 'comichaserie' +idComic + '/' + idSerie).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + 'comichasserie/' +comicId + '/' + serieId).pipe(map(response => { return response.json() }));
     }
     getComicsBySerie(id: number): Observable<Comic[]>{
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.get(this.basicUrl + 'comics/' + id).pipe(map(response => { return response.json() }));
     }
 
-    put(id: number, comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
+    put(comicId: number, serieId: number, comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
         
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + id, comicHasSerie).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + comicId + "/" + serieId, comicHasSerie).pipe(map(response => { return response.json() }));
     }
     post(comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.post(this.basicUrl, comicHasSerie).pipe(map(response => { return response.json() }));
     }
-    delete(id: number): Observable<ComicHasSerie> {
+    delete(comicId: number, serieId: number): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.delete(this.basicUrl + id).pipe(map(response => { return response.json() }));
+        return this.http.delete(this.basicUrl  + comicId + "/" + serieId).pipe(map(response => { return response.json() }));
     }
 
     count(): Observable<ComicHasSerie> {

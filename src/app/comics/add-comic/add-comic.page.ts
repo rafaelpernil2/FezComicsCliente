@@ -136,13 +136,6 @@ export class AddComicPage implements OnInit {
             }).then(toast => toast.present());
           });
       });
-      
-  
-  
-      
-
-
-
   }, error => {
   this.toastCtrl.create({
     message: "Se ha producido un error. Inténtalo más tarde",

@@ -37,7 +37,7 @@
           <ion-item>
 
             <ion-label color="primary" position="stacked">Series</ion-label>
-            <ion-select [(ngModel)]="idSerie" name="serie" (ionChange)="selectedItem()">
+            <ion-select [(ngModel)]="idSerie" interface="popover" name="serie" (ionChange)="selectedItem()">
 
               <ion-select-option *ngFor="let serie of series" [value]="serie.id">{{serie.nombre}}</ion-select-option>
 

@@ -6,6 +6,7 @@ import { Serie } from 'src/models/Serie';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ComicHasSerieProvider } from 'src/providers/ComicHasSerieProvider';
 import { Comic } from 'src/models/Comic';
+import { ComicProvider } from 'src/providers/ComicProvider';
 
 @Component({
   selector: 'app-serie',
@@ -22,6 +23,7 @@ export class SeriePage implements OnInit {
     private activatedRoute : ActivatedRoute,
     private router : Router,
     private serieProvider : SerieProvider,
+    private comicProvider : ComicProvider,
     private comicHasSerieProvider : ComicHasSerieProvider,
     private toastCtrl : ToastController,
     private sanitizer: DomSanitizer
@@ -54,20 +56,41 @@ export class SeriePage implements OnInit {
   }
 
   onClickDelete() {
-    this.serieProvider.delete(this.serie.id).subscribe(result => {
-      let toast = this.toastCtrl.create({
-        message: "Se ha borrado la serie correctamente",
-        duration: 3000,
-        position: 'top'
-      }).then(toast => toast.present());
-      this.router.navigate(['/series']);
-    }, error => {
-      this.toastCtrl.create({
-        message: "Se ha producido un error. Inténtalo más tarde",
-        duration: 3000,
-        position: 'top'
-      }).then(toast => toast.present());
+    this.comicHasSerieProvider.getComicsBySerie(this.serie.id).subscribe(result => {
+      result.forEach(element => {
+        this.comicProvider.delete(element.id).subscribe(result=>{
+          let toast = this.toastCtrl.create({
+            message: "Se ha borrado el comic" + element.nombre,
+            duration: 3000,
+            position: 'top'
+          }).then(toast => toast.present());
+          this.router.navigate(['/series']);
+
+        }, error =>{
+          this.toastCtrl.create({
+            message: "Se ha producido un error. Inténtalo más tarde",
+            duration: 3000,
+            position: 'top'
+          }).then(toast => toast.present());
+        });
+      });
+      this.serieProvider.delete(this.serie.id).subscribe(result => {
+        let toast = this.toastCtrl.create({
+          message: "Se ha borrado la serie correctamente",
+          duration: 3000,
+          position: 'top'
+        }).then(toast => toast.present());
+        this.router.navigate(['/series']);
+      }, error => {
+        this.toastCtrl.create({
+          message: "Se ha producido un error. Inténtalo más tarde",
+          duration: 3000,
+          position: 'top'
+        }).then(toast => toast.present());
+      });
+
     });
+    
   }
   getFoto(comic : Comic){
     return "data:image/jpeg;base64, " +comic.foto;

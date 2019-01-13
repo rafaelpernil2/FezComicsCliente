@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { ComicProvider } from 'src/providers/ComicProvider';
 import { FileUploader, FileItem, FileUploadModule } from 'ng2-file-upload';
 import { ComicHasSerieProvider } from 'src/providers/ComicHasSerieProvider';
+import { SerieProvider } from 'src/providers/SerieProvider';
 const routes: Routes = [
   {
     path: '',
@@ -27,6 +28,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [ComicPage],
-  providers: [ComicProvider, ComicHasSerieProvider]
+  providers: [ComicProvider, ComicHasSerieProvider, SerieProvider]
 })
 export class ComicPageModule {}

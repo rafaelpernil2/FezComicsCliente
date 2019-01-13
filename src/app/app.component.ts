@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Platform, MenuController } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
 import { Routes } from '@angular/router';
 import { SeriesPage } from './series/series.page';
@@ -32,7 +31,6 @@ export class AppComponent {
   private nombre : string;
   constructor(
     private platform: Platform,
-    private statusBar: StatusBar,
     private quoteProvider : QuoteProvider,
     private menuCtrl : MenuController,
   ) {
@@ -44,7 +42,6 @@ export class AppComponent {
       this.qod = qod.contents.quotes[0];
 
       this.platform.ready().then(() => {
-        this.statusBar.styleDefault();
         this.menuCtrl.open();      
       });
     });
