@@ -11,7 +11,7 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class ComicHasSerieProvider {
 
-    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.comichasserie/';
+    basicUrl : string = 'http://localhost:1221/B3servidorREST/webresources/app.entities.comichasserie/';
 
     constructor(private http: Http) {}
 
