@@ -140,13 +140,10 @@ export class ComicPage implements OnInit {
         this.comicHasSerieProvider.delete(this.comic.id, element.id).subscribe(result => { });
       });
       this.seriesSeleccionadas.forEach(element => {
-        this.comicHasSerieProvider.put(this.comic.id, element.id, new ComicHasSerie(element, this.comic, this.anotacionPublica, new ComicHasSeriePK(this.comic.id, element.id))).subscribe(result => {
+        this.comicHasSerieProvider.put(this.comic.id, element.id, new ComicHasSerie(element, this.comic, "", new ComicHasSeriePK(this.comic.id, element.id))).subscribe(result => {
         });
         this.router.navigate(['/comics']);
       });
-
-
-
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
@@ -159,7 +156,6 @@ export class ComicPage implements OnInit {
   onClickDelete() {
     this.seriesDeComic.forEach(element => {
       this.comicHasSerieProvider.delete(this.comic.id, element.id).subscribe(result => {
-
       })
     });
 

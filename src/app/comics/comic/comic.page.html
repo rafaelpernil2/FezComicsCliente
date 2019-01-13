@@ -30,10 +30,6 @@
             <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
           </ion-item>
           <ion-item>
-              <ion-label color="primary" position="stacked">Anotación publica</ion-label>
-              <ion-textarea placeholder="Anotación pública" [(ngModel)]="anotacionPublica" name="anotacionPublica"></ion-textarea>
-          </ion-item>
-          <ion-item>
             <ion-list>
               <ion-label color="primary" position="stacked">Series a las que pertenece</ion-label>
               <ion-item tappable *ngFor="let serie of seriesDeComic">
