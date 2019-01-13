@@ -11,8 +11,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="3">
-        <img class="image" [src]="pic"/>
-        <input name="file" id="file" type="file" ng2FileSelect [uploader]="uploader" style="display: none"/>
+        <img class="image" [src]="pic" />
+        <input name="file" id="file" type="file" ng2FileSelect [uploader]="uploader" style="display: none" />
         <label for="file">Subir foto...</label>
       </ion-col>
       <ion-col>
@@ -29,15 +29,27 @@
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
             <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
           </ion-item>
-          <ion-label color="primary" position="stacked">Series</ion-label>
-          <ion-list>
-              <ion-item tappable *ngFor="let serie of series">
+          <ion-item>
+              <ion-label color="primary" position="stacked">Anotación publica</ion-label>
+              <ion-textarea placeholder="Anotación pública" [(ngModel)]="anotacionPublica" name="anotacionPublica"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-list>
+              <ion-label color="primary" position="stacked">Series a las que pertenece</ion-label>
+              <ion-item tappable *ngFor="let serie of seriesDeComic">
                 <ion-label (click)="onClickSerie(serie)" style="margin-left: 10px">
                   <h2>{{serie.nombre}}</h2>
                   <p>{{serie.anotacionPrivada}}</p>
                 </ion-label>
               </ion-item>
-          </ion-list>
+            </ion-list>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" position="stacked">Series</ion-label>
+            <ion-select [(ngModel)]="seriesSeleccionadas" name="seriesSeleccionadas" multiple="true" (ionChange)="selectedItem()">
+              <ion-select-option *ngFor="let serie of series" [value]="serie">{{serie.nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
           <ion-button padding type="submit" float-left>Guardar</ion-button>
         </form>
         <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
