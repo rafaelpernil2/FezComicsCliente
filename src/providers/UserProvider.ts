@@ -8,7 +8,7 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://localhost:1221/B3servidorREST/webresources/app.entities.user/';
+    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.user/';
 
     constructor(private http: Http) {}
 

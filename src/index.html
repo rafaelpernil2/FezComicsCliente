@@ -21,7 +21,7 @@
     function onSignIn(googleUser) { 
       var id_token = googleUser.getAuthResponse().id_token;
       var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'http://localhost:1221/B3servidorREST/webresources/auth/tokensignin');
+      xhr.open('POST', 'http://http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/auth/tokensignin');
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.send('idtoken=' + id_token);
       if (typeof (Storage) !== "undefined") {
