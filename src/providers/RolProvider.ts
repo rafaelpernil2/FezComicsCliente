@@ -8,7 +8,7 @@ import { Rol } from 'src/models/Rol';
 @Injectable()
 export class RolProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://localhost:8080/B3servidorREST/webresources/app.entities.rol/';
+    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.rol/';
 
     constructor(private http: Http) {}
 

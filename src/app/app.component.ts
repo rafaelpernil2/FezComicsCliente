@@ -28,7 +28,8 @@ export class AppComponent {
   ];
 
   public qod : any;
-  private nombre : string;
+  public nombre : string;
+  
   constructor(
     private platform: Platform,
     private quoteProvider : QuoteProvider,

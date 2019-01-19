@@ -14,6 +14,12 @@
         <img class="image" [src]="pic" />
         <input name="file" id="file" type="file" ng2FileSelect [uploader]="uploader" style="display: none" />
         <label for="file">Subir foto...</label>
+        <div [ngClass]="{'liked': liked, 'unliked': !liked}" style="margin-top: 20px; margin-bottom: 10px;" (click)="onClickLike()">
+          <ion-icon md="md-thumbs-up"></ion-icon>
+          <span style="margin-left: 5px;">Me gusta</span>
+        </div>
+        <span style="font-size: 15px;">(A 28 usuarios les gusta)</span>
+        <!-- <span style="font-size: 15px;">(A {{numLikes}} usuarios les gusta)</span> -->
       </ion-col>
       <ion-col>
         <form (ngSubmit)="onSubmit()">
@@ -22,7 +28,7 @@
             <ion-input placeholder="Nombre" type="text" [(ngModel)]="comic.nombre" name="nombre" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label color="primary" position="stacked">isbn *</ion-label>
+            <ion-label color="primary" position="stacked">ISBN *</ion-label>
             <ion-input placeholder="ISBN" type="text" [(ngModel)]="comic.isbn" name="isbn" required></ion-input>
           </ion-item>
           <ion-item>
@@ -52,4 +58,45 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <h3>Comentarios</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h2>Francisco Sánchez</h2>
+        <p style="font-size: 14px;">
+          The most popular industrial group ever, and largely
+          responsible for bringing the music to a mass audience.
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h2>Antonio Eustaquio Santa María Íñigo de Dios</h2>
+        <p style="font-size: 14px;">
+          The most popular industrial group ever, and largely
+          responsible for bringing the music to a mass audience.
+        </p>
+      </ion-label>
+    </ion-item>
+    <!-- <ion-item *ngFor="let comentario of comic.comentarios">
+      <ion-label>
+        <h2>{{comentario.titulo}}</h2>
+        <p style="font-size: 14px;">{{comentario.mensaje}}</p>
+      </ion-label>
+    </ion-item> -->
+  </ion-list>
+
+  <h5 style="padding-left: 12px;">Añadir comentario</h5>
+  <form (ngSubmit)="onAddComentario()">
+      <ion-item>
+        <ion-label color="primary" position="stacked">Título *</ion-label>
+        <ion-input placeholder="Escribe aquí el título" type="text" [(ngModel)]="comentario.titulo" name="titulo" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">Mensaje *</ion-label>
+        <ion-textarea placeholder="Escribe aquí tu opinión" [(ngModel)]="comentario.mensaje" name="mensaje"></ion-textarea>
+      </ion-item>
+      <ion-button padding type="submit" float-left>Añadir</ion-button>
+    </form>
 </ion-content>

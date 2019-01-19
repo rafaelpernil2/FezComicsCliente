@@ -8,9 +8,12 @@ import { IonicModule } from '@ionic/angular';
 import { ComicPage } from './comic.page';
 import { HttpModule } from '@angular/http';
 import { ComicProvider } from 'src/providers/ComicProvider';
-import { FileUploader, FileItem, FileUploadModule } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { ComicHasSerieProvider } from 'src/providers/ComicHasSerieProvider';
 import { SerieProvider } from 'src/providers/SerieProvider';
+import { LikeProvider } from 'src/providers/LikeProvider';
+import { ComentarioProvider } from 'src/providers/ComentarioProvider';
+import { UserProvider } from 'src/providers/UserProvider';
 const routes: Routes = [
   {
     path: '',
@@ -28,6 +31,13 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [ComicPage],
-  providers: [ComicProvider, ComicHasSerieProvider, SerieProvider]
+  providers: [
+    ComicProvider,
+    ComicHasSerieProvider,
+    SerieProvider,
+    LikeProvider,
+    ComentarioProvider,
+    UserProvider
+  ]
 })
 export class ComicPageModule {}
