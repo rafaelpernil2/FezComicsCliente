@@ -26,6 +26,7 @@ export class AppComponent {
     }
   ];
 
+<<<<<<< HEAD
   public qod : any;
   public nombre : string;
   
@@ -33,6 +34,15 @@ export class AppComponent {
     private platform: Platform,
     private quoteProvider : QuoteProvider,
     private menuCtrl : MenuController,
+=======
+  public qod: any;
+  private nombre: string;
+  constructor(
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private quoteProvider: QuoteProvider,
+    private menuCtrl: MenuController,
+>>>>>>> c3f8e910f7ea1fd11bc4c8ec6782576fe0b9ee12
   ) {
     
     this.initializeApp();
@@ -43,10 +53,16 @@ export class AppComponent {
       this.qod = qod.contents.quotes[0];
 
       this.platform.ready().then(() => {
+<<<<<<< HEAD
         this.menuCtrl.open();      
+=======
+        this.statusBar.styleDefault();
+        this.nombre = sessionStorage.getItem("nombre");
+        this.menuCtrl.open();
+>>>>>>> c3f8e910f7ea1fd11bc4c8ec6782576fe0b9ee12
       });
     });
-    this.nombre = sessionStorage.getItem("nombre");
+   
   }
  
 }

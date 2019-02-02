@@ -9,10 +9,14 @@ import { Rol } from 'src/models/Rol';
 export class RolProvider implements HttpMethodsInterface {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/roles/';
 =======
     basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.rol/';
 >>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
+=======
+    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.rol/';
+>>>>>>> c3f8e910f7ea1fd11bc4c8ec6782576fe0b9ee12
 
     constructor(private http: Http) {}
 
