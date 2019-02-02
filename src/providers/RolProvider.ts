@@ -8,11 +8,7 @@ import { Rol } from 'src/models/Rol';
 @Injectable()
 export class RolProvider implements HttpMethodsInterface {
 
-<<<<<<< HEAD
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/roles/';
-=======
-    basicUrl : string = 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/app.entities.rol/';
->>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
 
     constructor(private http: Http) {}
 
