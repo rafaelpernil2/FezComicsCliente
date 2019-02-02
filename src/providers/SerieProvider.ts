@@ -8,7 +8,9 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class SerieProvider implements HttpMethodsInterface {
 
+
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/series/';
+
 
     constructor(private http: Http) {}
 

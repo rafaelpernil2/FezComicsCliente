@@ -8,7 +8,9 @@ import { Comic } from 'src/models/Comic';
 @Injectable()
 export class ComicProvider implements HttpMethodsInterface {
 
+
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comics/';
+
 
     constructor(private http: Http) {}
 

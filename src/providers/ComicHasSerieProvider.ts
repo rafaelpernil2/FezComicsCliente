@@ -11,7 +11,9 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class ComicHasSerieProvider {
 
+
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comichasseries/';
+
 
     constructor(private http: Http) {}
 

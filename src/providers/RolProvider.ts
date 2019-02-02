@@ -8,7 +8,9 @@ import { Rol } from 'src/models/Rol';
 @Injectable()
 export class RolProvider implements HttpMethodsInterface {
 
+
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/roles/';
+
 
     constructor(private http: Http) {}
 

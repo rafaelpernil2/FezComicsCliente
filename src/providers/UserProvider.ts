@@ -8,7 +8,9 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
+
     basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/users/';
+
 
     constructor(private http: Http) {}
 
