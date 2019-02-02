@@ -6,7 +6,6 @@ import { SeriesPage } from './series/series.page';
 import { ComicPage } from './comics/comic/comic.page';
 import { UserProvider } from 'src/providers/UserProvider';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -35,6 +34,7 @@ export class AppComponent {
     private quoteProvider : QuoteProvider,
     private menuCtrl : MenuController,
   ) {
+    
     this.initializeApp();
   }
 
@@ -48,5 +48,7 @@ export class AppComponent {
     });
     this.nombre = sessionStorage.getItem("nombre");
   }
+
+ 
 }
 

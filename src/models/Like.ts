@@ -1,15 +1,15 @@
 export class Like {
     id : number;
-    idUser? : number;
-    idComic? : number;
+    user? : number;
+    comic? : number;
 
     constructor(
         id? : number,
-        idUser? : number,
-        idComic? : number
+        user? : number,
+        comic? : number
     ) {
         this.id = id || null;
-        this.idUser = idUser || null;
-        this.idComic = idComic || null;
+        this.user = user || null;
+        this.comic = comic || null;
     }
 }

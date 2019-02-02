@@ -23,7 +23,7 @@ const STORAGE_KEY = 'my_images';
 export class AddComicPage implements OnInit {
   comic: Comic;
   comicHasSerie: ComicHasSerie;
-  serie: Serie;
+  seriesSeleccionadas: Serie[];
   series: Serie[];
   allSeries: Serie[];
   uploader: FileUploader = new FileUploader({});
@@ -31,7 +31,7 @@ export class AddComicPage implements OnInit {
   pic: any;
   inputFile: any;
   idSerie: number;
-  anotacionPublica : string;
+  anotacionPublica: string;
 
 
 
@@ -46,7 +46,6 @@ export class AddComicPage implements OnInit {
 
   ) {
     this.comic = new Comic();
-    this.serie = new Serie();
 
 
   }
@@ -66,11 +65,11 @@ export class AddComicPage implements OnInit {
   }
 
   selectedItem() {
-    this.serieProvider.get(this.idSerie).subscribe(serie => {
-      this.serie = serie
-    });
+    //this.serieProvider.get(this.idSerie).subscribe(serie => {
+    //  this.serie = serie
+    //});
+    this.seriesSeleccionadas;
   }
-
   uploaderController() {
     this.uploader.onAfterAddingFile = (fileItem: FileItem) => {
       this.isFile = true;
@@ -114,12 +113,15 @@ export class AddComicPage implements OnInit {
   uploadComic() {
 
     this.comicProvider.post(this.comic).subscribe(comicPost => {
-      this.comicProvider.getByNombre(this.comic.nombre).subscribe(comic => {
-        
-        this.comic = comic;
-        this.comicHasSerie = new ComicHasSerie(this.serie, this.comic, this.anotacionPublica,new ComicHasSeriePK(this.comic.id,this.serie.id));
 
-        
+
+      this.comic = comicPost;
+
+
+
+
+      this.seriesSeleccionadas.forEach(element => {
+        this.comicHasSerie = new ComicHasSerie(element.id, this.comic.id, this.anotacionPublica);
         this.comicHasSerieProvider.post(this.comicHasSerie).subscribe(
           comicHasSerie => {
             this.toastCtrl.create({
@@ -136,16 +138,13 @@ export class AddComicPage implements OnInit {
             }).then(toast => toast.present());
           });
       });
-  }, error => {
-  this.toastCtrl.create({
-    message: "Se ha producido un error. Inténtalo más tarde",
-    duration: 3000,
-    position: 'top'
-  }).then(toast => toast.present());
-});
-    
-    
+    });
   }
+      
+      
+    
+    
+  
 
 onClickDelete() {
   this.comicProvider.delete(this.comic.id).subscribe(result => {

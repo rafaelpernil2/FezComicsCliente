@@ -27,7 +27,12 @@ export class AddSeriePage implements OnInit {
   }
 
   onSubmit() {
-    this.serieProvider.post(this.serie).subscribe(serie => {
+    console.log(this.serie)
+    
+    this.serieProvider.post(
+      this.serie
+      
+      ).subscribe(serie => {
       this.toastCtrl.create({
         message: "Se ha creado la serie correctamente",
         duration: 3000,

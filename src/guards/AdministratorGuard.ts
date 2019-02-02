@@ -18,7 +18,7 @@ export class AdministratorGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
         let observer : Observable<boolean> = new Observable(suscriber => {
             this.userProvider.getUserByToken(sessionStorage.getItem("token")).subscribe(user => {            
-                suscriber.next(user.rolId.id==1);
+                suscriber.next(user.rol==1);
             });
         });
 

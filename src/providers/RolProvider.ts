@@ -8,7 +8,7 @@ import { Rol } from 'src/models/Rol';
 @Injectable()
 export class RolProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.rol/';
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/roles/';
 
     constructor(private http: Http) {}
 
@@ -34,7 +34,7 @@ export class RolProvider implements HttpMethodsInterface {
 
     put(id: number, rol: Rol): Observable<Rol> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + id, rol).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + id + "/", rol).pipe(map(response => { return response.json() }));
     }
     post(rol: Rol): Observable<Rol> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});

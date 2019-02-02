@@ -18,8 +18,7 @@
           <ion-icon md="md-thumbs-up"></ion-icon>
           <span style="margin-left: 5px;">Me gusta</span>
         </div>
-        <span style="font-size: 15px;">(A 28 usuarios les gusta)</span>
-        <!-- <span style="font-size: 15px;">(A {{numLikes}} usuarios les gusta)</span> -->
+        <span style="font-size: 15px;">(A {{numLikes}} usuarios les gusta)</span> 
       </ion-col>
       <ion-col>
         <form (ngSubmit)="onSubmit()">
@@ -33,7 +32,7 @@
           </ion-item>
           <ion-item>
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
-            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
+            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacion_privada" name="anotacion_privada"></ion-textarea>
           </ion-item>
           <ion-item>
             <ion-list>
@@ -41,7 +40,7 @@
               <ion-item tappable *ngFor="let serie of seriesDeComic">
                 <ion-label (click)="onClickSerie(serie)" style="margin-left: 10px">
                   <h2>{{serie.nombre}}</h2>
-                  <p>{{serie.anotacionPrivada}}</p>
+                  <p>{{serie.anotacion_privada}}</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -61,30 +60,14 @@
 
   <h3>Comentarios</h3>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let comentario of comentarios">
       <ion-label>
-        <h2>Francisco Sánchez</h2>
-        <p style="font-size: 14px;">
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
-        </p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>
-        <h2>Antonio Eustaquio Santa María Íñigo de Dios</h2>
-        <p style="font-size: 14px;">
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
-        </p>
-      </ion-label>
-    </ion-item>
-    <!-- <ion-item *ngFor="let comentario of comic.comentarios">
-      <ion-label>
+       <p style="font-size: 12px; float: right;">{{userNames[comentario.user]}}</p>
         <h2>{{comentario.titulo}}</h2>
         <p style="font-size: 14px;">{{comentario.mensaje}}</p>
+        
       </ion-label>
-    </ion-item> -->
+    </ion-item>
   </ion-list>
 
   <h5 style="padding-left: 12px;">Añadir comentario</h5>

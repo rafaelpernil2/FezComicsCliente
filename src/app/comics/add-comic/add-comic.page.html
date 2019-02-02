@@ -28,21 +28,17 @@
           </ion-item>
           <ion-item>
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
-            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
+            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacion_privada" name="anotacion_privada"></ion-textarea>
           </ion-item>
           <ion-item>
               <ion-label color="primary" position="stacked">Anotación publica</ion-label>
               <ion-textarea placeholder="Anotación pública" [(ngModel)]="anotacionPublica" name="anotacionPublica"></ion-textarea>
             </ion-item>
           <ion-item>
-
             <ion-label color="primary" position="stacked">Series</ion-label>
-            <ion-select [(ngModel)]="idSerie" interface="popover" name="serie" (ionChange)="selectedItem()">
-
-              <ion-select-option *ngFor="let serie of series" [value]="serie.id">{{serie.nombre}}</ion-select-option>
-
+            <ion-select [(ngModel)]="seriesSeleccionadas" name="seriesSeleccionadas" multiple="true" (ionChange)="selectedItem()">
+              <ion-select-option *ngFor="let serie of series" [value]="serie">{{serie.nombre}}</ion-select-option>
             </ion-select>
-
           </ion-item>
           <ion-button padding type="submit" float-right>Añadir comic</ion-button>
         </form>

@@ -3,14 +3,14 @@ import { Rol } from "./Rol";
 export class User{
     id: number;
     nombre: string;
-    rolId: Rol;
+    rol: number;
     constructor(
         id?: number,
         nombre?: string,
-        rolId?: Rol
+        rol?: number
     ){
         this.id = id || null;
         this.nombre = nombre || '';
-        this.rolId = rolId || null;
+        this.rol = rol || null;
     }
 }

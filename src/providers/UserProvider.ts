@@ -8,7 +8,7 @@ import { User } from 'src/models/User';
 @Injectable()
 export class UserProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.user/';
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/users/';
 
     constructor(private http: Http) {}
 
@@ -34,7 +34,7 @@ export class UserProvider implements HttpMethodsInterface {
 
     getUserByToken(token: string): Observable<User>{
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl +'userbytoken/' + token).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl +'getuserbytoken/' + token).pipe(map(response => { return response.json() }));
     }
 
     getRol(id: string): Observable<User>{
@@ -49,7 +49,7 @@ export class UserProvider implements HttpMethodsInterface {
 
     put(id: number, user: User): Observable<User> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + id, user).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + id + "/", user).pipe(map(response => { return response.json() }));
     }
     post(user: User): Observable<User> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});

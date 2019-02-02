@@ -8,7 +8,7 @@ import { Comentario } from 'src/models/Comentario';
 @Injectable()
 export class ComentarioProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.comentario/';
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comentarios/';
 
     constructor(private http: Http) {}
 
@@ -32,9 +32,16 @@ export class ComentarioProvider implements HttpMethodsInterface {
         return this.http.get(this.basicUrl + id).pipe(map(response => { return response.json() }));
     }
 
+    getComentariosByComic(id_comic: number): Observable<Comentario[]> {
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.get(this.basicUrl + 'comentariosbycomic/' + id_comic + '/').pipe(map(response => { return response.json() }));
+    }
+
+
+
     put(id: number, comentario: Comentario): Observable<Comentario> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: false});
-        return this.http.put(this.basicUrl + id, comentario).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + id + "/", comentario).pipe(map(response => { return response.json() }));
     }
     post(comentario: Comentario): Observable<Comentario> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});

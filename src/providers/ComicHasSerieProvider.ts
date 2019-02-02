@@ -11,7 +11,7 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class ComicHasSerieProvider {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.comichasserie/';
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comichasseries/';
 
     constructor(private http: Http) {}
 
@@ -33,22 +33,22 @@ export class ComicHasSerieProvider {
 
     getSerieByComic(id: number): Observable<Serie[]>{
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + 'serie/' + id).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + 'series/' + id).pipe(map(response => { return response.json() }));
     }
 
     get(comicId: number, serieId : number): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + 'comichasserie/' +comicId + '/' + serieId).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + 'comichasserie/' +comicId + '/' + serieId + '/').pipe(map(response => { return response.json() }));
     }
     getComicsBySerie(id: number): Observable<Comic[]>{
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.get(this.basicUrl + 'comics/' + id).pipe(map(response => { return response.json() }));
     }
 
-    put(comicId: number, serieId: number, comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
+    put(comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
         
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + comicId + "/" + serieId, comicHasSerie).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl, comicHasSerie).pipe(map(response => { return response.json() }));
     }
     post(comicHasSerie: ComicHasSerie): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
@@ -56,7 +56,7 @@ export class ComicHasSerieProvider {
     }
     delete(comicId: number, serieId: number): Observable<ComicHasSerie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.delete(this.basicUrl  + comicId + "/" + serieId).pipe(map(response => { return response.json() }));
+        return this.http.delete(this.basicUrl  +  'comichasserie/' +  comicId + "/" + serieId  + "/").pipe(map(response => { return response.json() }));
     }
 
     count(): Observable<ComicHasSerie> {
