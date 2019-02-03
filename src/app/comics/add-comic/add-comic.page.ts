@@ -65,9 +65,6 @@ export class AddComicPage implements OnInit {
   }
 
   selectedItem() {
-    //this.serieProvider.get(this.idSerie).subscribe(serie => {
-    //  this.serie = serie
-    //});
     this.seriesSeleccionadas;
   }
   uploaderController() {

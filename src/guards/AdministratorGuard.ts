@@ -25,7 +25,7 @@ export class AdministratorGuard implements CanActivate {
         return observer;
     }
 
-
+ 
 
 
 }
