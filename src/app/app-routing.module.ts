@@ -27,20 +27,24 @@ const routes: Routes = [
   },
   { 
     path: 'series/:id', 
-    loadChildren: './series/serie/serie.module#SeriePageModule' 
-    ,
+    loadChildren: './series/serie/serie.module#SeriePageModule',
     canActivate: [AdministratorGuard]
   },
   {
     path: 'comics',
-    loadChildren: './comics/comics.module#ComicsPageModule'
-    ,
+    loadChildren: './comics/comics.module#ComicsPageModule',
     canActivate: [ UserGuard]
   },
-  { path: 'comics/add', loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule' ,
-  canActivate: [ AdministratorGuard]},
-  { path: 'comics/:id', loadChildren: './comics/comic/comic.module#ComicPageModule' ,
-  canActivate: [ AdministratorGuard]}
+  {
+    path: 'comics/add',
+    loadChildren: './comics/add-comic/add-comic.module#AddComicPageModule',
+    canActivate: [ AdministratorGuard]
+  },
+  {
+    path: 'comics/:id',
+    loadChildren: './comics/comic/comic.module#ComicPageModule',
+    canActivate: [AdministratorGuard]
+  }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ComicProvider } from 'src/providers/ComicProvider';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController, AlertController } from '@ionic/angular';
 import { Comic } from 'src/models/Comic';
 import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 import { FileUploader, FileItem } from 'ng2-file-upload';
@@ -17,6 +17,7 @@ import { UserProvider } from 'src/providers/UserProvider';
 import { Like } from 'src/models/Like';
 import { User } from 'src/models/User';
 import { Comentario } from 'src/models/Comentario';
+import { GoogleBooksProvider } from 'src/providers/GoogleBooksProvider';
 
 
 @Component({
@@ -49,8 +50,10 @@ export class ComicPage implements OnInit {
     private likeProvider: LikeProvider,
     private comentarioProvider: ComentarioProvider,
     private userProvider: UserProvider,
+    private googleBooksProvider: GoogleBooksProvider,
     private toastCtrl: ToastController,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private alertController: AlertController
   ) {
     this.comentario = new Comentario();
   }
@@ -230,5 +233,30 @@ export class ComicPage implements OnInit {
         position: 'top'
       }).then(toast => toast.present());
     });
+  }
+
+
+  onClickGoogleBooks(comic: Comic) {
+    this.googleBooksProvider.getBookByISBN(comic.isbn).subscribe(result => {
+      if(result.totalItems > 0) {
+        this.presentAlert(result.items[0].accessInfo);
+      } else {
+        this.toastCtrl.create({
+          message: "No se ha encontrado un libro con ese ISBN",
+          duration: 3000,
+          position: 'top'
+        }).then(toast => toast.present());
+      }
+    });
+  }
+
+  async presentAlert(result: any) {
+    const alert = await this.alertController.create({
+      header: 'Disponilidad',
+      message: 'PDF -> ' + (result.pdf.isAvailable ? 'Sí' : 'No') + '\nEPUB -> ' + (result.epub.isAvailable ? 'Sí' : 'No'),
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

@@ -11,6 +11,7 @@ import { HttpModule } from '@angular/http';
 import { AdministratorGuard } from 'src/guards/AdministratorGuard';
 import { UserGuard } from 'src/guards/UserGuard';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
+import { GoogleBooksProvider } from 'src/providers/GoogleBooksProvider';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { QuoteProvider } from 'src/providers/QuoteProvider';
   providers: [
     UserProvider,
     QuoteProvider,
+    GoogleBooksProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
    
   ],

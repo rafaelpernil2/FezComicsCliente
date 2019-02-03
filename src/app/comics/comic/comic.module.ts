@@ -14,6 +14,7 @@ import { SerieProvider } from 'src/providers/SerieProvider';
 import { LikeProvider } from 'src/providers/LikeProvider';
 import { ComentarioProvider } from 'src/providers/ComentarioProvider';
 import { UserProvider } from 'src/providers/UserProvider';
+
 const routes: Routes = [
   {
     path: '',
