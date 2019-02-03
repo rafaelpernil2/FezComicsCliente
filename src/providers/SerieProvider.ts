@@ -8,7 +8,9 @@ import { Serie } from 'src/models/Serie';
 @Injectable()
 export class SerieProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.serie/';
+
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/series/';
+
 
     constructor(private http: Http) {}
 
@@ -35,7 +37,7 @@ export class SerieProvider implements HttpMethodsInterface {
 
     put(id: number, serie: Serie): Observable<Serie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + id, serie).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + id + "/", serie).pipe(map(response => { return response.json() }));
     }
     post(serie: Serie): Observable<Serie> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});

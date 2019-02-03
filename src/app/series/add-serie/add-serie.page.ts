@@ -27,18 +27,22 @@ export class AddSeriePage implements OnInit {
   }
 
   onSubmit() {
-    this.serieProvider.post(this.serie).subscribe(serie => {
+    
+    this.serieProvider.post(
+      this.serie
+      
+      ).subscribe(serie => {
       this.toastCtrl.create({
         message: "Se ha creado la serie correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/series']);
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }

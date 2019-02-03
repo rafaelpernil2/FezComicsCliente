@@ -8,7 +8,9 @@ import { Comic } from 'src/models/Comic';
 @Injectable()
 export class ComicProvider implements HttpMethodsInterface {
 
-    basicUrl : string = 'http://rpernilubuntu.eastus.cloudapp.azure.com:1221/B3servidorREST/webresources/app.entities.comic/';
+
+    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comics/';
+
 
     constructor(private http: Http) {}
 
@@ -33,12 +35,12 @@ export class ComicProvider implements HttpMethodsInterface {
     }
     getByNombre(nombre: string): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + 'nombre/' + nombre).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + 'comicsbynombre/' + nombre).pipe(map(response => { return response.json() }));
     }
 
     put(id: number, comic: Comic): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: false});
-        return this.http.put(this.basicUrl + id, comic).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + id + "/", comic).pipe(map(response => { return response.json() }));
     }
     post(comic: Comic): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});

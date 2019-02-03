@@ -43,14 +43,14 @@ export class SeriePage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha modificado la serie correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/series']);
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }
@@ -59,10 +59,11 @@ export class SeriePage implements OnInit {
     this.comicHasSerieProvider.getComicsBySerie(this.serie.id).subscribe(result => {
       result.forEach(element => {
         this.comicProvider.delete(element.id).subscribe(result=>{
+          this.comicHasSerieProvider.delete(element.id,this.serie.id).subscribe();
           let toast = this.toastCtrl.create({
             message: "Se ha borrado el comic" + element.nombre,
             duration: 3000,
-            position: 'top'
+            position: 'bottom'
           }).then(toast => toast.present());
           this.router.navigate(['/series']);
 
@@ -70,7 +71,7 @@ export class SeriePage implements OnInit {
           this.toastCtrl.create({
             message: "Se ha producido un error. Inténtalo más tarde",
             duration: 3000,
-            position: 'top'
+            position: 'bottom'
           }).then(toast => toast.present());
         });
       });
@@ -78,14 +79,14 @@ export class SeriePage implements OnInit {
         let toast = this.toastCtrl.create({
           message: "Se ha borrado la serie correctamente",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
         this.router.navigate(['/series']);
       }, error => {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       });
 

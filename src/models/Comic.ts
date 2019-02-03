@@ -5,26 +5,26 @@ export class Comic {
     id : number;
     nombre : string;
     isbn? : string;
-    anotacionPrivada? : string;
+    anotacion_privada? : string;
     foto? : string;
-    comentarios? : Comentario[];
-    likes? : Like[];
+    //comentarios? : Comentario[];
+    //likes? : Like[];
 
     constructor(
         id? : number,
         nombre? : string,
         isbn? : string,
-        anotacionPrivada? : string,
+        anotacion_privada? : string,
         foto? :string,
-        comentarios? : Comentario[],
-        likes? : Like[]
+        //comentarios? : Comentario[],
+        //likes? : Like[]
     ) {
         this.id = id || null;
         this.nombre = nombre || '';
         this.isbn = isbn || '';
-        this.anotacionPrivada = anotacionPrivada || '';
+        this.anotacion_privada = anotacion_privada || '';
         this.foto = foto || null;
-        this.comentarios = comentarios || [];
-        this.likes = likes || [];
+        //this.comentarios = comentarios || [];
+        //this.likes = likes || [];
     }
 }

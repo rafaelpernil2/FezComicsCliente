@@ -40,6 +40,8 @@ export class ComicPage implements OnInit {
   user: User;
   numLikes: number;
   comentario: Comentario;
+  comentarios : Comentario[];
+  userNames : {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +58,7 @@ export class ComicPage implements OnInit {
     private alertController: AlertController
   ) {
     this.comentario = new Comentario();
+    this.userNames = {};
   }
 
   ngOnInit() {
@@ -72,10 +75,11 @@ export class ComicPage implements OnInit {
           this.pic = this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + comic.foto);
         }
 
-        // this.userProvider.getUserByToken(sessionStorage.getItem("token")).subscribe(user => {
-        //   this.user = user;
-        //   // this.likeProvider.getByComicAndUser().subscribe(like => this.liked = true);
-        // });
+        this.userProvider.getUserByToken(sessionStorage.getItem("token")).subscribe(user => {  
+       
+           this.user = user;
+           this.likeProvider.getByUserAndComic(this.user.id,this.comic.id).subscribe(like => this.liked = true);
+        });
 
         this.serieProvider.all().subscribe(result => {
           this.series = result;
@@ -88,9 +92,25 @@ export class ComicPage implements OnInit {
         this.comicHasSerieProvider.getSerieByComic(this.comic.id).subscribe(series => {
           this.seriesDeComic = series;
         });
+
+        this.comentarioProvider.getComentariosByComic(this.comic.id).subscribe(comentarios =>{
+          this.comentarios = comentarios;
+          this.comentarios.forEach(comentario => {
+            this.userProvider.get(comentario.user).subscribe(user =>{
+              this.userNames[comentario.user] = user.nombre;
+            });
+          });
+        });
+
+        this.likeProvider.count(this.comic.id).subscribe(result=>{
+          this.numLikes = result;
+        });
+
+        
+
       });
 
-
+      
 
     }
 
@@ -108,6 +128,12 @@ export class ComicPage implements OnInit {
     this.seriesSeleccionadas;
   }
 
+  getUsuario(id){
+    this.userProvider.get(id).subscribe(result =>{
+      return result.nombre;
+    });
+  }
+
   uploaderController() {
     this.uploader.onAfterAddingFile = (fileItem: FileItem) => {
       this.isFile = true;
@@ -115,7 +141,7 @@ export class ComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
         this.uploader.cancelItem(fileItem);
         this.uploader.cancelAll();
@@ -128,7 +154,7 @@ export class ComicPage implements OnInit {
           this.toastCtrl.create({
             message: "Se ha producido un error. Inténtalo más tarde",
             duration: 3000,
-            position: 'top'
+            position: 'bottom'
           }).then(toast => toast.present());
         });
       }
@@ -142,7 +168,7 @@ export class ComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       });
     };
@@ -153,7 +179,7 @@ export class ComicPage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha modificado el comic correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       var diff = this.series;
       diff.filter((serie) => !this.seriesSeleccionadas.includes(serie));
@@ -161,7 +187,7 @@ export class ComicPage implements OnInit {
         this.comicHasSerieProvider.delete(this.comic.id, element.id).subscribe(result => { });
       });
       this.seriesSeleccionadas.forEach(element => {
-        this.comicHasSerieProvider.put(this.comic.id, element.id, new ComicHasSerie(element, this.comic, "", new ComicHasSeriePK(this.comic.id, element.id))).subscribe(result => {
+        this.comicHasSerieProvider.put(new ComicHasSerie(element.id, this.comic.id, "")).subscribe(result => {
         });
         this.router.navigate(['/comics']);
       });
@@ -169,7 +195,7 @@ export class ComicPage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }
@@ -184,14 +210,14 @@ export class ComicPage implements OnInit {
       let toast = this.toastCtrl.create({
         message: "Se ha borrado el comic correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/comics']);
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }
@@ -200,39 +226,61 @@ export class ComicPage implements OnInit {
     this.userProvider.getUserByToken(sessionStorage.getItem("token")).subscribe(user => {
       this.liked = true;
       let like = new Like();
-      like.idUser = user.id;
-      like.idComic = this.comic.id;
-      // this.likeProvider.post(like).toPromise()
-      // .then(() => {
-      //   this.liked = true;
-      //   this.numLikes++;
-      // }).catch(() => {
-      //   this.toastCtrl.create({
-      //     message: "Se ha producido un error. Inténtalo más tarde",
-      //     duration: 3000,
-      //     position: 'top'
-      //   }).then(toast => toast.present());
-      // });
+      like.user = this.user.id;
+      like.comic = this.comic.id;
+       this.likeProvider.post(like).toPromise()
+       .then(() => {
+        this.liked = true;
+        this.numLikes++;
+      }).catch(() => {
+       this.toastCtrl.create({
+         message: "Se ha producido un error. Inténtalo más tarde",
+         duration: 3000,
+          position: 'bottom'
+        }).then(toast => toast.present());
+     });
     });
   }
 
+  
+  eliminaComentario(comentario){
+    this.comentarioProvider.delete(comentario.id).subscribe(
+      result =>{
+        this.comentarios.splice(this.comentarios.findIndex(com => com == comentario),1);
+      }
+    );
+
+  }
+
   onAddComentario() {
-    this.comentario.idComic = this.comic.id;
-    this.comentario.idUser = this.user.id;
-    this.comentarioProvider.post(this.comentario).subscribe(result => {
-      this.comic.comentarios.push(this.comentario);
-      let toast = this.toastCtrl.create({
-        message: "Se ha añadido el comentario correctamente",
-        duration: 3000,
-        position: 'top'
-      }).then(toast => toast.present());
-    }, error => {
-      this.toastCtrl.create({
-        message: "Se ha producido un error. Inténtalo más tarde",
-        duration: 3000,
-        position: 'top'
-      }).then(toast => toast.present());
-    });
+   
+    
+      
+      this.comentario.comic = this.comic.id;          
+      this.comentario.user = this.user.id
+      this.comentarios.push(this.comentario);
+      this.userProvider.get(this.comentario.user).subscribe(user =>{
+        this.comentarioProvider.post(this.comentario).subscribe(result => {
+          
+          this.userNames[this.comentario.user] = user.nombre;
+          
+        });
+        
+        this.comentario = new Comentario();
+        let toast = this.toastCtrl.create({
+          message: "Se ha añadido el comentario correctamente",
+          duration: 3000,
+          position: 'bottom'
+        }).then(toast => toast.present());
+      }, error => {
+        this.toastCtrl.create({
+          message: "Se ha producido un error. Inténtalo más tarde",
+          duration: 3000,
+          position: 'bottom'
+        }).then(toast => toast.present());
+      });
+
+   
   }
 
 
