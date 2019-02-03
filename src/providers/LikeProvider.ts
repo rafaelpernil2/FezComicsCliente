@@ -55,6 +55,11 @@ export class LikeProvider implements HttpMethodsInterface {
         return this.http.delete(this.basicUrl + id).pipe(map(response => { return response.json() }));
     }
 
+    deleteByUserAndComic(id_user: number, id_comic: number): Observable<Like> {
+        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
+        return this.http.delete(this.basicUrl+ 'likebyuserandcomic/' + id_user + '/' + id_comic + '/').pipe(map(response => { return response.json() }));
+    }
+
     count(id_comic: number): Observable<number> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
         return this.http.get(this.basicUrl  + 'likesbycomic/count/' + id_comic).pipe(map(response => { return response.json() }));
