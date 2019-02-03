@@ -36,7 +36,7 @@ function getCookie(cname) {
 }
 
 
-
+/*
 function initClient() {
   gapi.client.init({
       'apiKey': 'AIzaSyB29rqisk8Wd6b0zmRSt6ZD5uN50RkMO3M',
@@ -50,25 +50,17 @@ function initClient() {
       GoogleAuth.isSignedIn.listen(updateSigninStatus);
   });
 }
-  
+*/  
     function onSignIn(googleUser) { 
       
       var id_token = googleUser.getAuthResponse().id_token;
       var xhr = new XMLHttpRequest();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
       var csrftoken = getCookie('csrftoken');
 
       
       xhr.open('POST', 'https://back-api-dot-infra-triumph-229219.appspot.com/auth');
-=======
-      xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
->>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
-=======
-      xhr.open('POST', 'http://fezcomic.jelastic.cloudhosted.es/B3servidorREST/webresources/auth/tokensignin');
->>>>>>> c3f8e910f7ea1fd11bc4c8ec6782576fe0b9ee12
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       //xhr.setRequestHeader('X-CSRFToken', csrftoken);
       xhr.send('idtoken=' + id_token);
@@ -76,17 +68,9 @@ function initClient() {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("nombre");
         sessionStorage.setItem("token", id_token);
-<<<<<<< HEAD
-<<<<<<< HEAD
         sessionStorage.setItem("nombre","Bienvenido, " + googleUser.getBasicProfile().getName());
 
 
-=======
-        sessionStorage.setItem("nombre", "Bienvenido, " + googleUser.getBasicProfile().getName());
->>>>>>> Listo para entregarse. Ahora se muestra tu nombre cuando inicias sesión y está enlazado al servidor en local
-=======
-        sessionStorage.setItem("nombre", "Bienvenido, " + googleUser.getBasicProfile().getName());
->>>>>>> c3f8e910f7ea1fd11bc4c8ec6782576fe0b9ee12
       }
       
     }

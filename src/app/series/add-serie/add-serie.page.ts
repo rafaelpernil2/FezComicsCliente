@@ -27,7 +27,6 @@ export class AddSeriePage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.serie)
     
     this.serieProvider.post(
       this.serie
@@ -36,14 +35,14 @@ export class AddSeriePage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha creado la serie correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/series']);
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }

@@ -77,7 +77,7 @@ export class AddComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
         this.uploader.cancelItem(fileItem);
         this.uploader.cancelAll();
@@ -90,7 +90,7 @@ export class AddComicPage implements OnInit {
           this.toastCtrl.create({
             message: "Se ha producido un error. Inténtalo más tarde",
             duration: 3000,
-            position: 'top'
+            position: 'bottom'
           }).then(toast => toast.present());
         });
       }
@@ -104,7 +104,7 @@ export class AddComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       });
     };
@@ -127,14 +127,14 @@ export class AddComicPage implements OnInit {
             this.toastCtrl.create({
               message: "Se ha creado el comic correctamente",
               duration: 3000,
-              position: 'top'
+              position: 'bottom'
             }).then(toast => toast.present());
             this.router.navigate(['/comics']);
           }, error => {
             this.toastCtrl.create({
               message: "Se ha producido un error. Inténtalo más tarde",
               duration: 3000,
-              position: 'top'
+              position: 'bottom'
             }).then(toast => toast.present());
           });
       });
@@ -151,14 +151,14 @@ onClickDelete() {
     let toast = this.toastCtrl.create({
       message: "Se ha borrado el comic correctamente",
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     }).then(toast => toast.present());
     this.router.navigate(['/comics']);
   }, error => {
     this.toastCtrl.create({
       message: "Se ha producido un error. Inténtalo más tarde",
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     }).then(toast => toast.present());
   });
 }

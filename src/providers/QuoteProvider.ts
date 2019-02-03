@@ -9,6 +9,6 @@ export class QuoteProvider {
     constructor(private http: Http) {}
 
     getQOD(): Observable<any> {
-        return this.http.get("http://quotes.rest/qod.json").pipe(map(response => { return response.json() }));
+        return this.http.get("https://quotes.rest/qod.json").pipe(map(response => { return response.json() }));
     }
 }

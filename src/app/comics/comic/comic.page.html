@@ -62,11 +62,12 @@
   <ion-list>
     <ion-item *ngFor="let comentario of comentarios">
       <ion-label>
-       <p style="font-size: 12px; float: right;">{{userNames[comentario.user]}}</p>
+       <p *ngIf="comentario.user!=user.id" style="font-size: 12px; float: right;">{{userNames[comentario.user]}}</p>
         <h2>{{comentario.titulo}}</h2>
         <p style="font-size: 14px;">{{comentario.mensaje}}</p>
         
       </ion-label>
+      <ion-button color="danger" *ngIf="comentario.user==user.id" (click)="eliminaComentario(comentario)">Eliminar</ion-button>
     </ion-item>
   </ion-list>
 

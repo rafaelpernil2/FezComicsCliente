@@ -138,7 +138,7 @@ export class ComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
         this.uploader.cancelItem(fileItem);
         this.uploader.cancelAll();
@@ -151,7 +151,7 @@ export class ComicPage implements OnInit {
           this.toastCtrl.create({
             message: "Se ha producido un error. Inténtalo más tarde",
             duration: 3000,
-            position: 'top'
+            position: 'bottom'
           }).then(toast => toast.present());
         });
       }
@@ -165,7 +165,7 @@ export class ComicPage implements OnInit {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       });
     };
@@ -176,7 +176,7 @@ export class ComicPage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha modificado el comic correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       var diff = this.series;
       diff.filter((serie) => !this.seriesSeleccionadas.includes(serie));
@@ -192,7 +192,7 @@ export class ComicPage implements OnInit {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }
@@ -207,14 +207,14 @@ export class ComicPage implements OnInit {
       let toast = this.toastCtrl.create({
         message: "Se ha borrado el comic correctamente",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/comics']);
     }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
-        position: 'top'
+        position: 'bottom'
       }).then(toast => toast.present());
     });
   }
@@ -233,10 +233,20 @@ export class ComicPage implements OnInit {
        this.toastCtrl.create({
          message: "Se ha producido un error. Inténtalo más tarde",
          duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
      });
     });
+  }
+
+  
+  eliminaComentario(comentario){
+    this.comentarioProvider.delete(comentario.id).subscribe(
+      result =>{
+        this.comentarios.splice(this.comentarios.findIndex(com => com == comentario),1);
+      }
+    );
+
   }
 
   onAddComentario() {
@@ -245,23 +255,25 @@ export class ComicPage implements OnInit {
       
       this.comentario.comic = this.comic.id;          
       this.comentario.user = this.user.id
-
-      this.comentarioProvider.post(this.comentario).subscribe(result => {
-        this.userProvider.get(this.comentario.user).subscribe(user =>{
+      this.comentarios.push(this.comentario);
+      this.userProvider.get(this.comentario.user).subscribe(user =>{
+        this.comentarioProvider.post(this.comentario).subscribe(result => {
+          
           this.userNames[this.comentario.user] = user.nombre;
+          
         });
-        this.comentarios.push(this.comentario);
-      
+        
+        this.comentario = new Comentario();
         let toast = this.toastCtrl.create({
           message: "Se ha añadido el comentario correctamente",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       }, error => {
         this.toastCtrl.create({
           message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
-          position: 'top'
+          position: 'bottom'
         }).then(toast => toast.present());
       });
 
