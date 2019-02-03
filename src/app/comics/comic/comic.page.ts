@@ -301,7 +301,7 @@ export class ComicPage implements OnInit {
   async presentAlert(result: any) {
     const alert = await this.alertController.create({
       header: 'Disponilidad',
-      message: 'PDF -> ' + (result.pdf.isAvailable ? 'Sí' : 'No') + '\nEPUB -> ' + (result.epub.isAvailable ? 'Sí' : 'No'),
+      message: '<strong>PDF</strong> -> ' + (result.pdf.isAvailable ? 'Sí' : 'No') + '<br><br><strong>EPUB</strong> -> ' + (result.epub.isAvailable ? 'Sí' : 'No'),
       buttons: ['OK']
     });
 

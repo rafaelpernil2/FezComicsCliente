@@ -113,31 +113,40 @@ export class AddComicPage implements OnInit {
   uploadComic() {
 
     this.comicProvider.post(this.comic).subscribe(comicPost => {
-
-
       this.comic = comicPost;
-
-
-
-
-      this.seriesSeleccionadas.forEach(element => {
-        this.comicHasSerie = new ComicHasSerie(element.id, this.comic.id, this.anotacionPublica);
-        this.comicHasSerieProvider.post(this.comicHasSerie).subscribe(
-          comicHasSerie => {
-            this.toastCtrl.create({
-              message: "Se ha creado el comic correctamente",
-              duration: 3000,
-              position: 'bottom'
-            }).then(toast => toast.present());
-            this.router.navigate(['/comics']);
-          }, error => {
-            this.toastCtrl.create({
-              message: "Se ha producido un error. Inténtalo más tarde",
-              duration: 3000,
-              position: 'bottom'
-            }).then(toast => toast.present());
-          });
-      });
+      if(this.seriesSeleccionadas.length > 0) {
+        this.seriesSeleccionadas.forEach(element => {
+          this.comicHasSerie = new ComicHasSerie(element.id, this.comic.id, this.anotacionPublica);
+          this.comicHasSerieProvider.post(this.comicHasSerie).subscribe(
+            comicHasSerie => {
+              this.toastCtrl.create({
+                message: "Se ha creado el comic correctamente",
+                duration: 3000,
+                position: 'bottom'
+              }).then(toast => toast.present());
+              this.router.navigate(['/comics']);
+            }, error => {
+              this.toastCtrl.create({
+                message: "Se ha producido un error. Inténtalo más tarde",
+                duration: 3000,
+                position: 'bottom'
+              }).then(toast => toast.present());
+            });
+        });
+      } else {
+        this.toastCtrl.create({
+          message: "Se ha creado el comic correctamente",
+          duration: 3000,
+          position: 'bottom'
+        }).then(toast => toast.present());
+        this.router.navigate(['/comics']);
+      }
+    }, err => {
+      this.toastCtrl.create({
+        message: "Se ha producido un error. Inténtalo más tarde",
+        duration: 3000,
+        position: 'bottom'
+      }).then(toast => toast.present());
     });
   }
       
