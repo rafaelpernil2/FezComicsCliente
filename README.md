@@ -35,15 +35,15 @@ There is no plan regarding contributions in this project
 ## Credits
 This web application has been developed by the following team:
 
-**Francisco Gambero Salinas **- *Front-End Developer*
+**Francisco Gambero Salinas**- *Front-End Developer*
 
 * [github/takox](https://github.com/Takox)
 
-**Jesus Contreras Herrera **- *Back-End Developer*
+**Jesus Contreras Herrera**- *Back-End Developer*
 
 * [github/JCH611](https://github.com/JCH611)
 
-**Francisco Sánchez Rueda **- *Front-End Development Lead*
+**Francisco Sánchez Rueda**- *Front-End Development Lead*
 
 * [github/fsanchezsw](https://github.com/fsanchezsw)
 
