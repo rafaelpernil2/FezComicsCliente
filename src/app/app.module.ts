@@ -12,6 +12,7 @@ import { AdministratorGuard } from 'src/guards/AdministratorGuard';
 import { UserGuard } from 'src/guards/UserGuard';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
 import { GoogleBooksProvider } from 'src/providers/GoogleBooksProvider';
+import { AppSettings } from 'src/config/AppSettings';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { GoogleBooksProvider } from 'src/providers/GoogleBooksProvider';
     IonicStorageModule.forRoot(),
   ],
   providers: [
+    AppSettings,
     UserProvider,
     QuoteProvider,
     GoogleBooksProvider,

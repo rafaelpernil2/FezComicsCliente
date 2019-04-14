@@ -3,14 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ComicProvider } from 'src/providers/ComicProvider';
 import { ToastController } from '@ionic/angular';
 import { Comic } from 'src/models/Comic';
-import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { blobToBase64String } from 'blob-util';
 import { ComicHasSerie } from 'src/models/ComicHasSerie';
 import { Serie } from 'src/models/Serie';
 import { SerieProvider } from 'src/providers/SerieProvider';
 import { ComicHasSerieProvider } from 'src/providers/ComicHasSerieProvider';
-import { ComicHasSeriePK } from 'src/models/ComicHasSeriePK';
 
 
 const STORAGE_KEY = 'my_images';
@@ -26,7 +25,7 @@ export class AddComicPage implements OnInit {
   seriesSeleccionadas: Serie[];
   series: Serie[];
   allSeries: Serie[];
-  uploader: FileUploader = new FileUploader({});
+  uploader: FileUploader = new FileUploader({ url: "" });
   isFile: boolean = false;
   pic: any;
   inputFile: any;
@@ -80,7 +79,7 @@ export class AddComicPage implements OnInit {
         this.uploader.cancelAll();
         this.isFile = false;
       } else {
-        blobToBase64String(fileItem._file.slice()).then(result => {
+        blobToBase64String(fileItem._file).then(result => {
           this.pic = this.sanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + result);
           this.isFile = true;
         }).catch(err => {
@@ -94,7 +93,7 @@ export class AddComicPage implements OnInit {
     };
 
     this.uploader.onCompleteItem = (item, response) => {
-      blobToBase64String(item._file.slice()).then(result => {
+      blobToBase64String(item._file).then(result => {
         this.comic.foto = result;
         this.uploadComic();
       }).catch(err => {
@@ -108,10 +107,9 @@ export class AddComicPage implements OnInit {
   }
 
   uploadComic() {
-
-    this.comicProvider.post(this.comic).subscribe(comicPost => {
-      this.comic = comicPost;
-      if(this.seriesSeleccionadas.length > 0) {
+    if (this.seriesSeleccionadas.length > 0) {
+      this.comicProvider.post(this.comic).subscribe(comicPost => {
+        this.comic = comicPost;
         this.seriesSeleccionadas.forEach(element => {
           this.comicHasSerie = new ComicHasSerie(element.id, this.comic.id, this.anotacionPublica);
           this.comicHasSerieProvider.post(this.comicHasSerie).subscribe(
@@ -130,15 +128,39 @@ export class AddComicPage implements OnInit {
               }).then(toast => toast.present());
             });
         });
-      } else {
+      }, err => {
         this.toastCtrl.create({
-          message: "Se ha creado el comic correctamente",
+          message: "Se ha producido un error. Inténtalo más tarde",
           duration: 3000,
           position: 'bottom'
         }).then(toast => toast.present());
-        this.router.navigate(['/comics']);
-      }
-    }, err => {
+      });
+    }
+    else {
+      this.toastCtrl.create({
+        message: "Error: No se ha seleccionado ninguna serie",
+        duration: 3000,
+        position: 'bottom'
+      }).then(toast => toast.present());
+      this.router.navigate(['/comics']);
+    }
+
+  }
+
+
+
+
+
+
+  onClickDelete() {
+    this.comicProvider.delete(this.comic.id).subscribe(result => {
+      let toast = this.toastCtrl.create({
+        message: "Se ha borrado el comic correctamente",
+        duration: 3000,
+        position: 'bottom'
+      }).then(toast => toast.present());
+      this.router.navigate(['/comics']);
+    }, error => {
       this.toastCtrl.create({
         message: "Se ha producido un error. Inténtalo más tarde",
         duration: 3000,
@@ -146,28 +168,6 @@ export class AddComicPage implements OnInit {
       }).then(toast => toast.present());
     });
   }
-      
-      
-    
-    
-  
-
-onClickDelete() {
-  this.comicProvider.delete(this.comic.id).subscribe(result => {
-    let toast = this.toastCtrl.create({
-      message: "Se ha borrado el comic correctamente",
-      duration: 3000,
-      position: 'bottom'
-    }).then(toast => toast.present());
-    this.router.navigate(['/comics']);
-  }, error => {
-    this.toastCtrl.create({
-      message: "Se ha producido un error. Inténtalo más tarde",
-      duration: 3000,
-      position: 'bottom'
-    }).then(toast => toast.present());
-  });
-}
 
 
 

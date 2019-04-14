@@ -223,10 +223,7 @@ export class ComicPage implements OnInit {
   }
 
   onClickDelete() {
-    this.seriesDeComic.forEach(element => {
-      this.comicHasSerieProvider.delete(this.comic.id, element.id).subscribe(result => {
-      })
-    });
+    
 
     this.comicProvider.delete(this.comic.id).subscribe(result => {
       let toast = this.toastCtrl.create({
@@ -304,12 +301,11 @@ export class ComicPage implements OnInit {
       this.comentario.comic = this.comic.id;          
       this.comentario.user = this.user.id
       if (this.comentario.titulo != "" && this.comentario.mensaje != ""){
-        this.comentarios.push(this.comentario);
         this.userProvider.get(this.comentario.user).subscribe(user =>{
-          this.comentarioProvider.post(this.comentario).subscribe(result => {
+          this.comentarioProvider.post(this.comentario).subscribe(comentario => {
             
-            this.userNames[this.comentario.user] = user.nombre;
-            
+            this.userNames[comentario.user] = user.nombre;
+            this.comentarios.push(comentario);
           });
           
           this.comentario = new Comentario();

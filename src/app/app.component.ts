@@ -48,6 +48,9 @@ export class AppComponent {
     });
     this.nombre = sessionStorage.getItem("nombre");
   }
+  onSignIn(){
+    this.nombre = sessionStorage.getItem("nombre");
+  }
  
 }
 

@@ -4,15 +4,16 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { HttpMethodsInterface } from './HttpMethodsInterface';
 import { Comic } from 'src/models/Comic';
+import { AppSettings } from 'src/config/AppSettings';
 
 @Injectable()
 export class ComicProvider implements HttpMethodsInterface {
 
 
-    basicUrl : string = 'https://back-api-dot-infra-triumph-229219.appspot.com/comics/';
+    basicUrl : string = this.appSettings.json.Endpoints.FezComicRESTPy.Comic;
 
 
-    constructor(private http: Http) {}
+    constructor(private http: Http,private appSettings: AppSettings) {}
 
     private obtainHeaders() {
         var headers = new Headers();
@@ -31,7 +32,7 @@ export class ComicProvider implements HttpMethodsInterface {
 
     get(id: number): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + id).pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + '/' + id).pipe(map(response => { return response.json() }));
     }
     getByNombre(nombre: string): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
@@ -40,7 +41,7 @@ export class ComicProvider implements HttpMethodsInterface {
 
     put(id: number, comic: Comic): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: false});
-        return this.http.put(this.basicUrl + id + "/", comic).pipe(map(response => { return response.json() }));
+        return this.http.put(this.basicUrl + '/' + id , comic).pipe(map(response => { return response.json() }));
     }
     post(comic: Comic): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
@@ -48,11 +49,11 @@ export class ComicProvider implements HttpMethodsInterface {
     }
     delete(id: number): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.delete(this.basicUrl + id).pipe(map(response => { return response.json() }));
+        return this.http.delete(this.basicUrl+ '/' + id).pipe(map(response => { return response.json() }));
     }
 
     count(): Observable<Comic> {
         let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl + 'count').pipe(map(response => { return response.json() }));
+        return this.http.get(this.basicUrl + '/'+ 'count').pipe(map(response => { return response.json() }));
     }
 }
