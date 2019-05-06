@@ -11,10 +11,14 @@ An Ionic 4 web application designed for a cartoonist to manage his/her Comics an
 It will be uploaded at some point to serve as a reference.
 ## Installation
 **Requirements:**
-* [**Node.js**](https://nodejs.org/)
+* [**Docker**](https://www.docker.com/)
 * [**FezComicRESTPy**](https://github.com/rafaelpernil2/FezComicRESTPy)
 
-**Steps:**
+***Additional requirements without using Docker:***
+* [**Node.js**](https://nodejs.org/)
+
+**Steps without Docker:**
+
 Install Ionic 4
 ```
 $ npm install -g ionic@latest
@@ -24,10 +28,26 @@ Go to the folder where you cloned this repository and install the dependencies
 $ npm install
 ```
 
+**Steps using Docker:**
+
+Simply build the container
+```
+$ docker build -t <some-tag> .
+```
+
 ## Usage
+**Usage without Docker**
+
 Deploy in local using the following command
 ```
 $ ionic serve
+```
+
+**Usage with Docker**
+
+Run the created container
+```
+$ docker run -p 8100:8100 -d <some-tag>
 ```
 
 ## Contributing
