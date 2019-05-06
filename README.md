@@ -67,7 +67,7 @@ This web application has been developed by the following team:
 
 * [github/fsanchezsw](https://github.com/fsanchezsw)
 
-**Rafael Pernil Bronchalo** - *Back-End Development and Design Lead* 
+**Rafael Pernil Bronchalo** - *Software Architect, Back-End Development and Design Lead* 
 
 * [github/rafaelpernil](https://github.com/rafaelpernil2)
 
