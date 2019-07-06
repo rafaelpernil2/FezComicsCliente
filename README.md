@@ -12,7 +12,7 @@ It will be uploaded at some point to serve as a reference.
 ## Installation
 **Requirements:**
 * [**Docker**](https://www.docker.com/)
-* [**FezComicRESTPy**](https://github.com/rafaelpernil2/FezComicRESTPy)
+* [**rafelpernil2/FezComicRESTPy**](https://github.com/rafaelpernil2/FezComicRESTPy)
 
 ***Additional requirements without using Docker:***
 * [**Node.js**](https://nodejs.org/)
