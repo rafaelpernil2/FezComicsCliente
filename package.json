@@ -22,7 +22,7 @@
     "@angular/router": "~7.0.0",
     "@ionic/angular": "4.0.0-beta.16",
     "@ionic/storage": "^2.2.0",
-    "angular": "^1.7.5",
+    "angular": "^1.7.9",
     "blob-util": "^2.0.2",
     "core-js": "^2.6.2",
     "g": "^2.0.1",
