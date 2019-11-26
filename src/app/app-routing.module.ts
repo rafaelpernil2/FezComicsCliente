@@ -12,21 +12,21 @@ const routes: Routes = [
     path: '',
     redirectTo: 'series',
     pathMatch: 'full',
-    canActivate: [UserGuard] 
-  },
-  { 
-    path: 'series',
-    loadChildren: './series/series.module#SeriesPageModule',
-    canActivate: [UserGuard] 
+    canActivate: [UserGuard]
   },
   {
-    path: 'series/add', 
+    path: 'series',
+    loadChildren: './series/series.module#SeriesPageModule',
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'series/add',
     loadChildren: './series/add-serie/add-serie.module#AddSeriePageModule'
     ,
-    canActivate: [AdministratorGuard] 
+    canActivate: [AdministratorGuard]
   },
-  { 
-    path: 'series/:id', 
+  {
+    path: 'series/:id',
     loadChildren: './series/serie/serie.module#SeriePageModule',
     canActivate: [AdministratorGuard]
   },
@@ -50,6 +50,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes), HttpModule],
   exports: [RouterModule],
-  providers : [UserProvider, UserGuard,AdministratorGuard]
+  providers : [UserProvider, UserGuard, AdministratorGuard]
 })
 export class AppRoutingModule {}

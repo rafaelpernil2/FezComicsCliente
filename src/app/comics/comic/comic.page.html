@@ -3,15 +3,15 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="line-height: 35px" float-left>Modificar comic</ion-title>
-    <ion-button fill="outline" color="dark" size="small" float-right (click)="onClickGoogleBooks(comic)">
+    <ion-title style="line-height: 35px" class="ion-float-left">Modificar comic</ion-title>
+    <ion-button fill="outline" color="dark" size="small" class="ion-float-right" (click)="onClickGoogleBooks(comic)">
       <ion-icon style="padding-right: 10px" name="logo-google"></ion-icon>
       Google Books
     </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="comic" padding>
+<ion-content *ngIf="comic"class="ion-padding">
   <ion-grid>
     <ion-row>
       <ion-col size="3">
@@ -55,9 +55,9 @@
               <ion-select-option *ngFor="let serie of series" [value]="serie">{{serie.nombre}}</ion-select-option>
             </ion-select>
           </ion-item>
-          <ion-button padding type="submit" float-left>Guardar</ion-button>
+          <ion-button class="ion-padding" type="submit" class="ion-float-left">Guardar</ion-button>
         </form>
-        <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
+        <ion-button class="ion-padding" color="danger" class="ion-float-right" (click)="onClickDelete()">Borrar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -85,6 +85,6 @@
         <ion-label color="primary" position="stacked">Mensaje *</ion-label>
         <ion-textarea placeholder="Escribe aquí tu opinión" [(ngModel)]="comentario.mensaje" name="mensaje"></ion-textarea>
       </ion-item>
-      <ion-button padding type="submit" float-left>Añadir</ion-button>
+      <ion-button class="ion-padding" type="submit" class="ion-float-left">Añadir</ion-button>
     </form>
 </ion-content>

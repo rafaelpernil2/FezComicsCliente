@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <form *ngIf="serie" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label color="primary" position="stacked">Nombre *</ion-label>
@@ -38,8 +38,8 @@
         
       </ion-list>
     </ion-item>
-      <ion-button padding type="submit" float-left>Guardar</ion-button>
+      <ion-button class="ion-padding" type="submit" class="ion-float-left">Guardar</ion-button>
   </form>
-  <ion-button padding color="danger" float-right (click)="onClickDelete()">Borrar</ion-button>
+  <ion-button class="ion-padding" color="danger" class="ion-float-right" (click)="onClickDelete()">Borrar</ion-button>
   
 </ion-content>

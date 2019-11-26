@@ -11,36 +11,36 @@ import { Serie } from 'src/models/Serie';
 })
 export class AddSeriePage implements OnInit {
 
-  serie : Serie;
+  serie: Serie;
 
   constructor(
-    private router : Router,
-    private serieProvider : SerieProvider,
-    private toastCtrl : ToastController
+    private router: Router,
+    private serieProvider: SerieProvider,
+    private toastCtrl: ToastController
   ) {
     this.serie = new Serie();
   }
 
   ngOnInit() {
-    
+
 
   }
 
   onSubmit() {
-    
+
     this.serieProvider.post(
       this.serie
-      
+
       ).subscribe(serie => {
       this.toastCtrl.create({
-        message: "Se ha creado la serie correctamente",
+        message: 'Se ha creado la serie correctamente',
         duration: 3000,
         position: 'bottom'
       }).then(toast => toast.present());
       this.router.navigate(['/series']);
     }, error => {
       this.toastCtrl.create({
-        message: "Se ha producido un error. Inténtalo más tarde",
+        message: 'Se ha producido un error. Inténtalo más tarde',
         duration: 3000,
         position: 'bottom'
       }).then(toast => toast.present());

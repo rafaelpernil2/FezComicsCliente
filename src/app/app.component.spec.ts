@@ -20,7 +20,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
- 
+
         { provide: Platform, useValue: platformSpy },
       ],
       imports: [ RouterTestingModule.withRoutes([])],

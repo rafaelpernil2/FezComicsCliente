@@ -2,79 +2,80 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 
   <title>Fez Comic - Ionic App</title>
 
 
   <base href="/" />
 
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
   <script src="https://apis.google.com/js/client.js"></script>
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
   <script type="text/javascript">
 
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-
-/*
-function initClient() {
-  gapi.client.init({
-      'apiKey': 'AIzaSyB29rqisk8Wd6b0zmRSt6ZD5uN50RkMO3M',
-      'clientId': '20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com',
-      'scope': 'https://www.googleapis.com/oauth2/v3/userinfo',
-      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
-  }).then(function () {
-      GoogleAuth = gapi.auth2.getAuthInstance();
-
-      // Listen for sign-in state changes.
-      GoogleAuth.isSignedIn.listen(updateSigninStatus);
-  });
-}
-*/  
-    function onSignIn(googleUser) { 
-      
-      var id_token = googleUser.getAuthResponse().id_token;
-      var xhr = new XMLHttpRequest();
-
-
-      var csrftoken = getCookie('csrftoken');
-
-      
-      xhr.open('POST', 'http://localhost:8000/auth');
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      //xhr.setRequestHeader('X-CSRFToken', csrftoken);
-      xhr.send('idtoken=' + id_token);
-      if (typeof (Storage) !== "undefined") {
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("nombre");
-        sessionStorage.setItem("token", id_token);
-        sessionStorage.setItem("nombre","Bienvenido, " + googleUser.getBasicProfile().getName());
-
-
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
       }
-      
+      return "";
     }
+
+
+    /*
+    function initClient() {
+      gapi.client.init({
+          'apiKey': 'AIzaSyB29rqisk8Wd6b0zmRSt6ZD5uN50RkMO3M',
+          'clientId': '20997473920-opi6u7sbies9c4eket8tjr767l72j8q5.apps.googleusercontent.com',
+          'scope': 'https://www.googleapis.com/oauth2/v3/userinfo',
+          'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
+      }).then(function () {
+          GoogleAuth = gapi.auth2.getAuthInstance();
+    
+          // Listen for sign-in state changes.
+          GoogleAuth.isSignedIn.listen(updateSigninStatus);
+      });
+    }
+    */
+    // function onSignIn(googleUser) {
+
+    //   var id_token = googleUser.getAuthResponse().id_token;
+    //   var xhr = new XMLHttpRequest();
+
+
+    //   var csrftoken = getCookie('csrftoken');
+
+
+    //   xhr.open('POST', 'http://localhost:8000/auth');
+    //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //   //xhr.setRequestHeader('X-CSRFToken', csrftoken);
+    //   xhr.send('idtoken=' + id_token);
+    //   if (typeof (Storage) !== "undefined") {
+    //     sessionStorage.removeItem("token");
+    //     sessionStorage.removeItem("nombre");
+    //     sessionStorage.setItem("token", id_token);
+    //     sessionStorage.setItem("nombre", "Bienvenido, " + googleUser.getBasicProfile().getName());
+
+    //   }
+
+    // }
   </script>
   <script>
     function signOut() {

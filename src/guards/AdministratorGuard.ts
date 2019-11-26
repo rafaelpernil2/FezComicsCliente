@@ -16,17 +16,17 @@ export class AdministratorGuard implements CanActivate {
     rolId: Number;
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
-        let observer : Observable<boolean> = new Observable(suscriber => {
-            this.userProvider.getUserByToken(sessionStorage.getItem("token")).subscribe(user => {            
-                suscriber.next(user.rol==1);
+        const observer: Observable<boolean> = new Observable(suscriber => {
+            this.userProvider.getUserByToken(sessionStorage.getItem('token')).subscribe(user => {
+                suscriber.next(user.rol == 1);
             });
         });
 
         return observer;
     }
 
- 
+
 
 
 }
-    
+

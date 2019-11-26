@@ -1,7 +1,5 @@
 {
-  "name": "fezComic",
-  "integrations": {
-    "cordova": {}
-  },
+  "name": "FezComics-Client",
+  "integrations": {},
   "type": "angular"
 }

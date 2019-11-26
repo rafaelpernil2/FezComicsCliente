@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="ion-padding">
     <form (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label color="primary" position="stacked">Nombre *</ion-label>
@@ -21,6 +21,6 @@
         <ion-label color="primary" position="stacked">Anotación privada</ion-label>
         <ion-textarea placeholder="Anotación privada" [(ngModel)]="serie.anotacion_privada" name="anotacion_privada"></ion-textarea>
       </ion-item>
-      <ion-button padding type="submit" float-right>Añadir serie</ion-button>
+      <ion-button class="ion-padding" type="submit" class="ion-float-right">Añadir serie</ion-button>
   </form>
 </ion-content>

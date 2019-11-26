@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { HttpMethodsInterface } from './HttpMethodsInterface';
 import { Rol } from 'src/models/Rol';
@@ -10,46 +10,46 @@ import { AppSettings } from 'src/config/AppSettings';
 export class RolProvider implements HttpMethodsInterface {
 
 
-    basicUrl : string = this.appSettings.json.Endpoints.FezComicRESTPy.Rol;
+    basicUrl: string = this.appSettings.json.default.Endpoints.FezComicRESTPy.Rol;
 
 
-    constructor(private http: Http, private appSettings: AppSettings) {}
+    constructor(private http: HttpClient, private appSettings: AppSettings) {}
 
     private obtainHeaders() {
-        var headers = new Headers();
-        headers.append('Access-Control-Allow-Origin' , '*');
-        headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-        headers.append('Accept','application/json');
-        headers.append('content-type','application/json;charset=utf-8');
+        let headers = new HttpHeaders()
+        headers = headers.append('Access-Control-Allow-Origin' , '*');
+        headers = headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+        headers = headers.append('Accept', 'application/json');
+        headers = headers.append('content-type', 'application/json;charset=utf-8');
 
         return headers;
     }
 
     all(): Observable<Rol[]> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl).pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.get(this.basicUrl);
     }
 
     get(id: number): Observable<Rol> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl+ '/' + id).pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.get(this.basicUrl + '/' + id);
     }
 
     put(id: number, rol: Rol): Observable<Rol> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.put(this.basicUrl + '/' + id + '/', rol).pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.put(this.basicUrl + '/' + id + '/', rol);
     }
     post(rol: Rol): Observable<Rol> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.post(this.basicUrl, rol).pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.post(this.basicUrl, rol);
     }
     delete(id: number): Observable<Rol> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.delete(this.basicUrl+ '/' + id).pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.delete(this.basicUrl + '/' + id);
     }
 
     count(): Observable<Rol> {
-        let options = new RequestOptions({ headers:this.obtainHeaders(),withCredentials: true});
-        return this.http.get(this.basicUrl+ '/' + 'count').pipe(map(response => { return response.json() }));
+        const options = { headers: this.obtainHeaders(), withCredentials: true};
+        return this.http.get(this.basicUrl + '/' + 'count');
     }
 }

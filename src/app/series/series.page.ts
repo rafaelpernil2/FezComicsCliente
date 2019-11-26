@@ -10,34 +10,44 @@ import { Serie } from 'src/models/Serie';
 })
 export class SeriesPage implements OnInit {
 
-  series : Serie[] = [];
-  allSeries : Serie[] = [];
+  series: Serie[] = [];
+  allSeries: Serie[] = [];
 
   constructor(
-    private router : Router,
-    private serieProvider : SerieProvider
+    private router: Router,
+    private serieProvider: SerieProvider
   ) { }
 
-  ngOnInit() {
+
+  init() {
     this.serieProvider.all().subscribe(series => {
       this.allSeries = series;
       this.series = series;
     });
   }
 
-  initializeItems(){
+  ngOnInit() {
+    this.init();
+  }
+
+  ionViewWillEnter() {
+    this.init();
+  }
+
+
+  initializeItems() {
     this.series = this.allSeries;
   }
 
-  onInput($event : any) {
+  onInput(event: any) {
     this.initializeItems();
 
-    var val = $event.target.value;
+    const val = event.target.value;
 
     if (val && val.trim() != '') {
       this.series = this.series.filter(serie => {
         return (serie.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1)
-                || (serie.genero.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          || (serie.genero.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
     }
   }
@@ -46,7 +56,7 @@ export class SeriesPage implements OnInit {
     this.router.navigate(['/series/add']);
   }
 
-  onClickSerie(serie : Serie) {
-    this.router.navigate([`/series/${serie.id}`])
+  onClickSerie(serie: Serie) {
+    this.router.navigate([`/series/${serie.id}`]);
   }
 }

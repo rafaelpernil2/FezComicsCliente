@@ -1,6 +1,6 @@
-import { Rol } from "./Rol";
+import { Rol } from './Rol';
 
-export class User{
+export class User {
     id: number;
     nombre: string;
     rol: number;
@@ -8,7 +8,7 @@ export class User{
         id?: number,
         nombre?: string,
         rol?: number
-    ){
+    ) {
         this.id = id || null;
         this.nombre = nombre || '';
         this.rol = rol || null;

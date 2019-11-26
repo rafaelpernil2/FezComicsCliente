@@ -30,7 +30,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [AddComicPage],
-  providers: [ComicProvider,SerieProvider,ComicHasSerieProvider],
-  
+  providers: [ComicProvider, SerieProvider, ComicHasSerieProvider],
+
 })
 export class AddComicPageModule {}
