@@ -23,7 +23,6 @@ export class AuthProvider {
     verifyToken(token: string): Observable<object> {
         const options = { headers: this.obtainHeaders() };
         const request = `idtoken=${token}`;
-        console.log(options);
         return this.http.post(this.basicUrl, request, options);
     }
 

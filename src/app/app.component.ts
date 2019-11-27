@@ -1,12 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { Platform, MenuController } from '@ionic/angular';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
-import { Routes } from '@angular/router';
-import { SeriesPage } from './series/series.page';
-import { ComicPage } from './comics/comic/comic.page';
-import { UserProvider } from 'src/providers/UserProvider';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RequestOptions } from '@angular/http';
 import { AuthProvider } from 'src/providers/AuthProvider';
 
 
@@ -50,6 +45,7 @@ export class AppComponent {
     private menuCtrl: MenuController,
     private zone: NgZone,
   ) {
+    // Attach signIn method to window
     window.onSignIn = this.onSignIn;
     // Refresh workarround
     this.welcomeMessageObs.subscribe(this.onWelcomeMessageChanged.bind(this));
@@ -73,18 +69,7 @@ export class AppComponent {
       sessionStorage.setItem("token", idToken);
     }
 
-
-    this.authProvider.verifyToken(idToken).subscribe(response=>{
-      console.log("Ha terminao y eso :)");
-    })
-
-    // const xhr = new XMLHttpRequest();
-
-
-
-    // xhr.open('POST', 'http://localhost:8000/auth');
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // xhr.send('idtoken=' + idToken);
+    this.authProvider.verifyToken(idToken);
 
     this.welcomeMessage.next("Bienvenido, " + googleUser.getBasicProfile().getName());
   }
