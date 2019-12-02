@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
 import { HttpMethodsInterface } from './HttpMethodsInterface';
 import { Comentario } from 'src/models/Comentario';
 import { AppSettings} from '../config/AppSettings';
@@ -14,7 +14,7 @@ export class ComentarioProvider implements HttpMethodsInterface {
     constructor(private http: HttpClient, private appSettings: AppSettings) {}
 
     private obtainHeaders() {
-        let headers = new HttpHeaders()
+        let headers = new HttpHeaders();
         headers = headers.append('Access-Control-Allow-Origin' , '*');
         headers = headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         headers = headers.append('Accept', 'application/json');

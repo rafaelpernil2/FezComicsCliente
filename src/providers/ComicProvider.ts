@@ -35,24 +35,24 @@ export class ComicProvider implements HttpMethodsInterface {
     }
     getByNombre(nombre: string): Observable<Comic> {
         const options = { headers: this.obtainHeaders(), withCredentials: true};
-        return this.http.get<Comic>(this.basicUrl + 'comicsbynombre/' + nombre)
+        return this.http.get<Comic>(this.basicUrl + 'comicsbynombre/' + nombre);
     }
 
     put(id: number, comic: Comic): Observable<Comic> {
         const options = { headers: this.obtainHeaders(), withCredentials: true};
-        return this.http.put<Comic>(this.basicUrl + '/' + id , comic)
+        return this.http.put<Comic>(this.basicUrl + '/' + id , comic);
     }
     post(comic: Comic): Observable<Comic> {
         const options = { headers: this.obtainHeaders(), withCredentials: true};
-        return this.http.post<Comic>(this.basicUrl, comic)
+        return this.http.post<Comic>(this.basicUrl, comic);
     }
     delete(id: number): Observable<Comic> {
         const options = { headers: this.obtainHeaders(), withCredentials: true};
-        return this.http.delete<Comic>(this.basicUrl + '/' + id)
+        return this.http.delete<Comic>(this.basicUrl + '/' + id);
     }
 
     count(): Observable<Comic> {
         const options = { headers: this.obtainHeaders(), withCredentials: true};
-        return this.http.get<Comic>(this.basicUrl + '/' + 'count')
+        return this.http.get<Comic>(this.basicUrl + '/' + 'count');
     }
 }

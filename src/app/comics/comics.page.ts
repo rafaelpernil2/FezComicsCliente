@@ -3,7 +3,6 @@ import { ComicProvider } from 'src/providers/ComicProvider';
 import { Comic } from 'src/models/Comic';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { customPromiseAll } from 'paralell-promises';
 import { AppSettings } from 'src/config/AppSettings';
 
 @Component({

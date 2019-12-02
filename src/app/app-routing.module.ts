@@ -11,8 +11,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'series',
-    pathMatch: 'full',
-    canActivate: [UserGuard]
+    pathMatch: 'full'
   },
   {
     path: 'series',

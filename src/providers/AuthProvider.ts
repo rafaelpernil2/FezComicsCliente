@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
 import { AppSettings } from 'src/config/AppSettings';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -20,7 +20,7 @@ export class AuthProvider {
         return headers;
     }
 
-    verifyToken(token: string): Observable<object> {
+    authenticate(token: string): Observable<object> {
         const options = { headers: this.obtainHeaders() };
         const request = `idtoken=${token}`;
         return this.http.post(this.basicUrl, request, options);

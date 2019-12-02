@@ -3,9 +3,11 @@ import { Platform, MenuController } from '@ionic/angular';
 import { QuoteProvider } from 'src/providers/QuoteProvider';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthProvider } from 'src/providers/AuthProvider';
+import { DataUtil } from 'src/utils/DataUtil';
 
 
 declare const window: any;
+declare const gapi: any;
 
 @Component({
   selector: 'app-root',
@@ -33,7 +35,7 @@ export class AppComponent {
   public message: string;
   public isUserLoggedIn: boolean;
 
-  private welcomeMessage: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private welcomeMessage: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public welcomeMessageObs: Observable<string> = this.welcomeMessage.asObservable();
 
 
@@ -47,6 +49,7 @@ export class AppComponent {
   ) {
     // Attach signIn method to window
     window.onSignIn = this.onSignIn;
+    window.signOut = this.signOut;
     // Refresh workarround
     this.welcomeMessageObs.subscribe(this.onWelcomeMessageChanged.bind(this));
     this.initializeApp();
@@ -64,14 +67,23 @@ export class AppComponent {
   onSignIn = (googleUser) => {
 
     const idToken = googleUser.getAuthResponse().id_token;
-    if (typeof (Storage) !== "undefined") {
-      sessionStorage.removeItem("token");
-      sessionStorage.setItem("token", idToken);
+    if (typeof (Storage) !== 'undefined') {
+      sessionStorage.removeItem('token');
+      DataUtil.setCookie('token', idToken, 1);
     }
+    this.authProvider.authenticate(idToken).toPromise().then(() => {
+      this.welcomeMessage.next('Bienvenido, ' + googleUser.getBasicProfile().getName());
+    });
 
-    this.authProvider.verifyToken(idToken);
 
-    this.welcomeMessage.next("Bienvenido, " + googleUser.getBasicProfile().getName());
+  }
+
+  signOut = () => {
+    const auth2 = gapi.auth2.getAuthInstance();
+    DataUtil.eraseCookie('token');
+    auth2.signOut();
+    auth2.disconnect();
+    this.welcomeMessage.next('');
   }
 
   // Workarround thanks to:
@@ -80,7 +92,7 @@ export class AppComponent {
     this.zone.run(() => {
       this.currentWelcomeMessage = message;
     });
-  };
+  }
 
 
   public get currentWelcomeMessage(): string {

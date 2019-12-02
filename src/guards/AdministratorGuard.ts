@@ -3,6 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { UserProvider } from 'src/providers/UserProvider';
 import { User } from 'src/models/User';
 import { Observable } from 'rxjs';
+import { DataUtil } from 'src/utils/DataUtil';
 
 @Injectable()
 export class AdministratorGuard implements CanActivate {
@@ -13,12 +14,12 @@ export class AdministratorGuard implements CanActivate {
     ) {
 
     }
-    rolId: Number;
+    rolId: number;
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
         const observer: Observable<boolean> = new Observable(suscriber => {
-            this.userProvider.getUserByToken(sessionStorage.getItem('token')).subscribe(user => {
-                suscriber.next(user.rol == 1);
+            this.userProvider.getUserByToken(DataUtil.getCookie('token')).subscribe(user => {
+                suscriber.next(user.rol === 1);
             });
         });
 
