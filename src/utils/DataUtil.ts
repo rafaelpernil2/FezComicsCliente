@@ -9,7 +9,7 @@ export class DataUtil {
 
     public static getImgContent(comic: Comic): SafeUrl {
         let result: string;
-        const domSanitizer: DomSanitizer;
+        let domSanitizer: DomSanitizer;
         if (comic.foto == null) {
             result = new AppSettings().json.default.DefaultLogo;
         } else {

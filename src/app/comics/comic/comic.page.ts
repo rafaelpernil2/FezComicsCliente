@@ -18,6 +18,7 @@ import { Like } from 'src/models/Like';
 import { User } from 'src/models/User';
 import { Comentario } from 'src/models/Comentario';
 import { GoogleBooksProvider } from 'src/providers/GoogleBooksProvider';
+import { DataUtil } from 'src/utils/DataUtil';
 
 
 @Component({
@@ -74,7 +75,7 @@ export class ComicPage implements OnInit {
           this.pic = this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64, ' + comic.foto);
         }
 
-        this.userProvider.getUserByToken(sessionStorage.getItem('token')).subscribe(user => {
+        this.userProvider.getUserByToken(DataUtil.getCookie("token")).subscribe(user => {
 
           this.user = user;
           this.likeProvider.getByUserAndComic(this.user.id, this.comic.id).subscribe(like => this.liked = true);
