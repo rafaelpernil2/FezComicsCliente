@@ -3,20 +3,17 @@ import { Comic } from './Comic';
 import { ComicHasSeriePK } from './ComicHasSeriePK';
 
 export class ComicHasSerie {
-    id_serie: number;
-    id_comic: number;
-    anotacion_publica: String;
-    // comicHasSeriePK: ComicHasSeriePK;
+    idSerie: number;
+    idComic: number;
+    anotacionPublica: string;
 
     constructor(
-        id_serie: number,
-        id_comic: number,
-        anotacion_publica: String,
-        // comicHasSeriePK : ComicHasSeriePK
+        idSerie: number,
+        idComic: number,
+        anotacionPublica: string,
     ) {
-        this.id_comic = id_comic || null;
-        this.id_serie = id_serie || null;
-        this.anotacion_publica = anotacion_publica || '';
-        // this.comicHasSeriePK = comicHasSeriePK || null;
+        this.idComic = idComic || null;
+        this.idSerie = idSerie || null;
+        this.anotacionPublica = anotacionPublica || '';
     }
 }

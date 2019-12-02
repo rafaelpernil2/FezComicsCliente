@@ -4,7 +4,7 @@
             "Auth": "http://localhost:8000/auth",
             "Comentario": "http://localhost:8000/comentarios",
             "Comic": "http://localhost:8000/comics",
-            "ComicHasSerie" : "http://localhost:8000/comichasseries",
+            "ComicHasSerie": "http://localhost:8000/comichasseries",
             "Like": "http://localhost:8000/likes",
             "Rol": "http://localhost:8000/roles",
             "Serie": "http://localhost:8000/series",

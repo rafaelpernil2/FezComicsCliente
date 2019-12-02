@@ -14,11 +14,11 @@
   <ion-list>
     <ion-item tappable *ngFor="let comic of comics">
       <ion-avatar item-start>
-        <img [src]="getImgContent(comic)">
+        <img [src]="getFoto(comic)">
       </ion-avatar>
       <ion-label (click)="onClickComic(comic)" style="margin-left: 10px">
         <h2>{{comic.nombre}}</h2>
-        <p>{{comic.anotacion_privada}}</p>
+        <p>{{comic.anotacionPrivada}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

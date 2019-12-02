@@ -5,7 +5,7 @@ export class Comic {
     id: number;
     nombre: string;
     isbn?: string;
-    anotacion_privada?: string;
+    anotacionPrivada?: string;
     foto?: string;
     // comentarios? : Comentario[];
     // likes? : Like[];
@@ -14,7 +14,7 @@ export class Comic {
         id?: number,
         nombre?: string,
         isbn?: string,
-        anotacion_privada?: string,
+        anotacionPrivada?: string,
         foto?: string,
         // comentarios? : Comentario[],
         // likes? : Like[]
@@ -22,7 +22,7 @@ export class Comic {
         this.id = id || null;
         this.nombre = nombre || '';
         this.isbn = isbn || '';
-        this.anotacion_privada = anotacion_privada || '';
+        this.anotacionPrivada = anotacionPrivada || '';
         this.foto = foto || null;
         // this.comentarios = comentarios || [];
         // this.likes = likes || [];

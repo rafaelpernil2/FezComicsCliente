@@ -36,7 +36,7 @@
           </ion-item>
           <ion-item>
             <ion-label color="primary" position="stacked">Anotación privada</ion-label>
-            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacion_privada" name="anotacion_privada"></ion-textarea>
+            <ion-textarea placeholder="Anotación privada" [(ngModel)]="comic.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
           </ion-item>
           <ion-item>
             <ion-list>
@@ -44,7 +44,7 @@
               <ion-item tappable *ngFor="let serie of seriesDeComic">
                 <ion-label (click)="onClickSerie(serie)" style="margin-left: 10px">
                   <h2>{{serie.nombre}}</h2>
-                  <p>{{serie.anotacion_privada}}</p>
+                  <p>{{serie.anotacionPrivada}}</p>
                 </ion-label>
               </ion-item>
             </ion-list>

@@ -4,6 +4,8 @@ import { Comic } from 'src/models/Comic';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AppSettings } from 'src/config/AppSettings';
+import { DataUtil } from 'src/utils/DataUtil';
+
 
 @Component({
   selector: 'app-comics',
@@ -45,20 +47,10 @@ export class ComicsPage implements OnInit {
 
 
   getFoto(comic: Comic) {
+
+    return DataUtil.getImgContent(this.sanitizer, comic);
     return 'data:image/jpeg;base64, ' + comic.foto;
   }
-
-  getImgContent(comic: Comic): SafeUrl {
-    let result: string;
-    if (comic.foto == null) {
-      result = this.appSettingsObject.DefaultLogo;
-    } else {
-      result = 'data:image/jpeg;base64, ' + comic.foto;
-    }
-    return this.sanitizer.bypassSecurityTrustUrl(result);
-  }
-
-
 
 
   initializeItems() {

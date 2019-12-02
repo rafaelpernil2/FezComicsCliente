@@ -4,6 +4,7 @@ import { QuoteProvider } from 'src/providers/QuoteProvider';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthProvider } from 'src/providers/AuthProvider';
 import { DataUtil } from 'src/utils/DataUtil';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 
 declare const window: any;
@@ -37,7 +38,7 @@ export class AppComponent {
 
   private welcomeMessage: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public welcomeMessageObs: Observable<string> = this.welcomeMessage.asObservable();
-
+  public pic: SafeUrl;
 
 
   constructor(
@@ -46,11 +47,13 @@ export class AppComponent {
     private quoteProvider: QuoteProvider,
     private menuCtrl: MenuController,
     private zone: NgZone,
+    private sanitizer: DomSanitizer
   ) {
     // Attach signIn method to window
     window.onSignIn = this.onSignIn;
     window.signOut = this.signOut;
     // Refresh workarround
+    this.pic = DataUtil.getImgContent(this.sanitizer);
     this.welcomeMessageObs.subscribe(this.onWelcomeMessageChanged.bind(this));
     this.initializeApp();
   }

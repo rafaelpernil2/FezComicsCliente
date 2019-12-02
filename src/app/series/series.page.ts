@@ -44,7 +44,7 @@ export class SeriesPage implements OnInit {
 
     const val = event.target.value;
 
-    if (val && val.trim() != '') {
+    if (val && val.trim() !== '') {
       this.series = this.series.filter(serie => {
         return (serie.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1)
           || (serie.genero.toLowerCase().indexOf(val.toLowerCase()) > -1);

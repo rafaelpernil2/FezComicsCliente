@@ -35,7 +35,7 @@ export class SeriePage implements OnInit {
   }
 
   ngOnInit() {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10);
     if (!isNaN(id)) { this.serieProvider.get(id).subscribe(serie => this.serie = serie); }
     this.comicHasSerieProvider.getComicsBySerie(id).subscribe(comics => {
       this.comics = comics;
@@ -49,23 +49,23 @@ export class SeriePage implements OnInit {
         message: 'Se ha modificado la serie correctamente',
         duration: 3000,
         position: 'bottom'
-      }).then(toast => toast.present());
+      }).then(serieModToast => serieModToast.present());
       this.router.navigate(['/series']);
     }, error => {
       this.toastCtrl.create({
         message: 'Se ha producido un error. Inténtalo más tarde',
         duration: 3000,
         position: 'bottom'
-      }).then(toast => toast.present());
+      }).then(errorToast => errorToast.present());
     });
   }
 
   onClickDelete() {
     this.comicHasSerieProvider.getComicsBySerie(this.serie.id).subscribe(result => {
       result.forEach(element => {
-        this.comicProvider.delete(element.id).subscribe(result => {
+        this.comicProvider.delete(element.id).subscribe(() => {
           this.comicHasSerieProvider.delete(element.id, this.serie.id).subscribe();
-          const toast = this.toastCtrl.create({
+          const deleteComicToast = this.toastCtrl.create({
             message: 'Se ha borrado el comic' + element.nombre,
             duration: 3000,
             position: 'bottom'
@@ -77,22 +77,22 @@ export class SeriePage implements OnInit {
             message: 'Se ha producido un error. Inténtalo más tarde',
             duration: 3000,
             position: 'bottom'
-          }).then(toast => toast.present());
+          }).then(errorToast => errorToast.present());
         });
       });
-      this.serieProvider.delete(this.serie.id).subscribe(result => {
-        const toast = this.toastCtrl.create({
+      this.serieProvider.delete(this.serie.id).subscribe(() => {
+        this.toastCtrl.create({
           message: 'Se ha borrado la serie correctamente',
           duration: 3000,
           position: 'bottom'
-        }).then(toast => toast.present());
+        }).then(deleteSerieToast => deleteSerieToast.present());
         this.router.navigate(['/series']);
       }, error => {
         this.toastCtrl.create({
           message: 'Se ha producido un error. Inténtalo más tarde',
           duration: 3000,
           position: 'bottom'
-        }).then(toast => toast.present());
+        }).then(errorToast => errorToast.present());
       });
 
     });

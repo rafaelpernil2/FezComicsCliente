@@ -7,13 +7,12 @@ export class DataUtil {
         return 'data:image/jpeg;base64, ' + comic.foto;
     }
 
-    public static getImgContent(comic: Comic): SafeUrl {
+    public static getImgContent(domSanitizer: DomSanitizer, comic?: Comic): SafeUrl {
         let result: string;
-        let domSanitizer: DomSanitizer;
-        if (comic.foto == null) {
-            result = new AppSettings().json.default.DefaultLogo;
-        } else {
+        if (comic && comic.foto) {
             result = 'data:image/jpeg;base64, ' + comic.foto;
+        } else {
+            result = new AppSettings().json.default.DefaultLogo;
         }
         return domSanitizer.bypassSecurityTrustUrl(result);
     }

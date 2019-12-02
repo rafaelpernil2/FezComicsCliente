@@ -19,7 +19,7 @@
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Anotación privada</ion-label>
-        <ion-textarea placeholder="Anotación privada" [(ngModel)]="serie.anotacion_privada" name="anotacion_privada"></ion-textarea>
+        <ion-textarea placeholder="Anotación privada" [(ngModel)]="serie.anotacionPrivada" name="anotacionPrivada"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label color="primary" position="stacked">Comics</ion-label>
@@ -32,7 +32,7 @@
           </ion-avatar>
           <ion-label (click)="onClickComic(comic)" style="margin-left: 10px">
             <h2>{{comic.nombre}}</h2>
-            <p>{{comic.anotacion_privada}}</p>
+            <p>{{comic.anotacionPrivada}}</p>
           </ion-label>
         </ion-item>
         
