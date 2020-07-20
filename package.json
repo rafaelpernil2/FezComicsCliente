@@ -1,6 +1,6 @@
 {
   "name": "fez-comic",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "scripts": {
@@ -60,7 +60,8 @@
     "typescript": "~3.4.3"
   },
   "resolutions": {
-    "minimist": "^1.2.3"
+    "minimist": "^1.2.3",
+    "lodash": "4.17.19"
   },
   "description": "An Ionic project"
 }
