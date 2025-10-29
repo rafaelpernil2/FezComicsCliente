@@ -49,7 +49,6 @@ export class ComicsPage implements OnInit {
   getFoto(comic: Comic) {
 
     return DataUtil.getImgContent(this.sanitizer, comic);
-    return 'data:image/jpeg;base64, ' + comic.foto;
   }
 
 

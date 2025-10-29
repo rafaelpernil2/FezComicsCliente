@@ -174,7 +174,6 @@ export class ComicPage implements OnInit {
 
       const diff = this.seriesDeComic;
       let itemsProcessed = 0;
-      diff.filter((serie) => !this.seriesSeleccionadas.includes(serie));
       if (diff.length === 0) {
         this.seriesSeleccionadas.forEach(element => {
           this.comicHasSerieProvider.put(new ComicHasSerie(element.id, this.comic.id, '')).subscribe(result => {
